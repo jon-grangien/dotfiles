@@ -1,0 +1,4 @@
+eval `ssh-agent -s` > /dev/null &
+xmodmap ~/.Xmodmap &
+redshift -l 19:58 &
+

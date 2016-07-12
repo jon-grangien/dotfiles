@@ -1,0 +1,5 @@
+[user]
+	name = codingInSpace
+	email = jonathan.grangien@gmail.com
+[core]
+	editor = nvim
