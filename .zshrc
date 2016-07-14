@@ -83,4 +83,4 @@ alias l="ls -lXhA"
 alias goreact="cd ~/Code/codinginspace.github.io"
 alias devreact="cd ~/Code/codinginspace.github.io && nvim"
 alias batstats="upower -i /org/freedesktop/UPower/devices/battery_BAT0"
-
+alias live="live-server --browser=chromium"
