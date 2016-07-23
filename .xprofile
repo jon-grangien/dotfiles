@@ -1,4 +1,7 @@
-eval `ssh-agent -s` > /dev/null &
 xmodmap ~/.Xmodmap &
 redshift -l 19:58 &
+
+if [ "$DESKTOP_SESSION" = "i3" ]; then
+    export $(gnome-keyring-daemon -s)
+fi
 
