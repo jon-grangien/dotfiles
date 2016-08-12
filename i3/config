@@ -232,4 +232,6 @@ bar {
 exec --no-startup-id xss-lock -- /home/jonathan/Scripts/superlock.sh
 exec --no-startup-id compton -b --config /home/jonathan/.config/compton/config
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon  
+exec --no-startup-id nm-applet 
 exec --no-startup-id sleep 2 && xfce4-power-manager
+
