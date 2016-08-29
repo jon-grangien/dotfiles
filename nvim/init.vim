@@ -64,6 +64,8 @@ nmap <leader>o :BuffergatorOpen<CR>
 nnoremap <silent> <Leader>+ :vertical resize +5<CR>
 nnoremap <silent> <Leader>- :vertical resize -5<CR>
 imap <Leader><Tab> <Esc>
+map <F1> <Esc>
+imap <F1> <Esc>
 
 """""neosnippet configuration 
 let g:neosnippet#disable_runtime_snippets = { "_": 1, }
