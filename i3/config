@@ -29,7 +29,7 @@ font xft:Literation Mono Powerline 12
 
 ### Custom values
 # Wallpaper
-exec --no-startup-id feh --bg-scale /home/jonathan/.config/i3/wall4.jpg
+exec --no-startup-id feh --bg-scale /home/jonathan/.config/i3/wall1.jpg
 
 # colors variables
 set $bg-color 						#2f343f
