@@ -1,0 +1,14 @@
+set nocompatible              " be iMproved, required
+set hidden
+filetype off                  " required
+
+nnoremap , :
+nnoremap j gj
+nnoremap k gk
+nnoremap ö l
+nnoremap l h
+nnoremap h /
+vnoremap <C-c> "+y
+vnoremap ö l 
+vnoremap l h
+

@@ -29,15 +29,15 @@ font xft:Literation Mono Powerline 12
 
 ### Custom values
 # Wallpaper
-exec --no-startup-id feh --bg-scale /home/jonathan/.config/i3/wall1.jpg
+exec --no-startup-id feh --bg-scale /home/jonathan/.config/i3/wall5.jpg
 
 # colors variables
-set $bg-color 						#2f343f
+set $bg-color 						#191b2c
 set $inactive-bg-color		#85678f
 set $text-color						#f3f4f5
 set $inactive-text-color	#676E7D
 set $urgent-bg-color			#E53935
-set $active-border				#fe8d86
+set $active-border				#1ab2ff
 set $inactive-border			#2f343f
 
 # window colors
@@ -153,7 +153,8 @@ bindsym $mod+c exec chromium
 
 assign [class="google-chrome-beta"] $ws1
 assign [class="chromium"] $ws1
-assign [class="messengerfordesktop"] $ws4
+assign [class="franz"] $ws4
+assign [class="nylas"] $ws4
 assign [class="slack"] $ws4
 assign [class="spotify"] $ws5
 

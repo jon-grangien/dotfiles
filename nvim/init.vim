@@ -21,6 +21,7 @@ Plug 'Shougo/neosnippet.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'ap/vim-css-color'
 Plug 'blueyed/vim-diminactive'
+Plug 'severin-lemaignan/vim-minimap'
 
 call plug#end()
 
@@ -111,6 +112,9 @@ let g:Tex_AutoFolding = 0
 let g:Tex_FoldedSections     = ""
 let g:Tex_FoldedEnvironments = ""
 let g:Tex_FoldedMisc         = ""
+
+" minimap
+let g:minimap_highlight='Visual'
 
 " Color theme
 "papercolor:
