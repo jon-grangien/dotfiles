@@ -55,6 +55,7 @@ plugins=(git)
 
 # export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
+PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 
 source $ZSH/oh-my-zsh.sh
 
