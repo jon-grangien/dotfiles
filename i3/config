@@ -57,8 +57,8 @@ bindsym $mod+Return exec termite
 bindsym $mod+Shift+q kill
 
 # start rofi
-bindsym $mod+r exec rofi -show run 
-#bindsym $mod+r exec rofi -show run -fullscreen -lines 4 -eh 2 -padding 400 -bw 0 -bg "argb: cc263238" -fg "argb: ffffffff" -bc "argb: ffffffff" -fg "argb: ffffffff" -hlbg "argb: aacccccc" -hlfg "#404040"
+bindsym $mod+r exec rofi -show run
+
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
