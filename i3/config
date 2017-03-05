@@ -29,7 +29,7 @@ font xft:Literation Mono Powerline 12
 
 ### Custom values
 # Wallpaper
-exec --no-startup-id feh --bg-scale /home/jonathan/.config/i3/wall5.jpg
+exec --no-startup-id feh --bg-scale /home/jonathan/.config/i3/wall8.jpg
 
 # colors variables
 set $bg-color 						#191b2c
@@ -199,9 +199,11 @@ bindsym XF86AudioMute exec amixer set Master toggle
 # Brightness
 bindsym $alt+F5 exec xbacklight -dec 5
 bindsym $alt+F6 exec xbacklight -inc 5
+bindsym Control+$mod+b exec xbacklight -set 100
 
 # Lock
-bindsym Control+$mod+l exec /home/jonathan/Scripts/superlock.sh
+#bindsym Control+$mod+l exec /home/jonathan/Scripts/superlock.sh
+bindsym Control+$mod+l exec /usr/bin/i3lock-fancy -t "Jamen lås upp då"
 
 # Screenshot
 bindsym Print exec scrot -e 'mv $f ~/Pictures/screenshots/screenshot-%d%m%Y-%H:%M.jpg 2>/dev/null'
@@ -215,22 +217,24 @@ gaps inner 15
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-	status_command i3blocks -c ~/.config/i3/i3blocks.conf
-	position top
-	colors {
-		background $bg-color
-		separator #757575
+#bar {
+#	status_command i3blocks -c ~/.config/i3/i3blocks.conf
+#	position top
+#	colors {
+#		background $bg-color
+#		separator #757575
+#
+#		#											border								background						text
+#		focused_workspace			$bg-color							$bg-color							$text-color
+#		inactive_workspace		$bg-color							$bg-color							$inactive-text-color
+#		urgent_workspace			$urgent-bg-color			$urgent-bg-color			$text-color
+#	}
+#}
 
-		#											border								background						text
-		focused_workspace			$bg-color							$bg-color							$text-color
-		inactive_workspace		$bg-color							$bg-color							$inactive-text-color
-		urgent_workspace			$urgent-bg-color			$urgent-bg-color			$text-color
-	}
-}
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Other autostarts
-exec --no-startup-id xss-lock -- /home/jonathan/Scripts/superlock.sh
+#exec --no-startup-id xss-lock -- /home/jonathan/Scripts/superlock.sh
 exec --no-startup-id compton -b --config /home/jonathan/.config/compton/config
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon  
 exec --no-startup-id nm-applet 
