@@ -2,13 +2,36 @@ set nocompatible              " be iMproved, required
 set hidden
 filetype off                  " required
 
+let mapleader = "\<Space>"
 nnoremap , :
-nnoremap j gj
-nnoremap k gk
+"nnoremap j gj
+"nnoremap k gk
 nnoremap ö l
 nnoremap l h
 nnoremap h /
 vnoremap <C-c> "+y
 vnoremap ö l 
 vnoremap l h
+noremap <C-k> :call feedkeys( line('.')==1 ? '' : 'ddkP' )<CR>
+noremap <C-j> ddp
+nnoremap <silent> <esc> :noh<cr><esc>
+nmap <silent> <A-k> :wincmd k<CR>
+nmap <silent> <A-j> :wincmd j<CR>
+nmap <silent> <A-ö> :wincmd l<CR>
+nmap <silent> <A-l> :wincmd h<CR>
+nnoremap <Leader>e g_
+nnoremap <Leader>s 0
+nnoremap <Leader>q :q<CR>
+nnoremap <leader>w :w<CR>
+noremap <silent> <Leader>+ :vertical resize +5<CR>
+nnoremap <silent> <Leader>- :vertical resize -5<CR>
+imap <Leader><Tab> <Esc>
+map <F1> <Esc>
+imap <F1> <Esc>
+
+set ignorecase	" case insensitive search
+set smartcase		" case insensitive search unless one uppercase char is used
+set incsearch     	" show search matches as you type
+set history=1000        " remember more commands and search history
+set undolevels=1000     " use many levels of undo
 
