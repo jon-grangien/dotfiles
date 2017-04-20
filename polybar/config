@@ -51,7 +51,7 @@ font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
 font-3 = fontawesome:pixelsize=10
 
-modules-left = i3
+modules-left = i3 bspwm
 modules-center = 
 modules-right = xbacklight volume cpu memory wlan eth battery date powermenu
 #modules-right = xbacklight volume xkeyboard memory cpu wlan eth battery temperature date powermenu
