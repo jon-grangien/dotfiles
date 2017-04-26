@@ -76,6 +76,9 @@ imap <C-s>     <Plug>(neosnippet_expand_or_jump)
 smap <C-s>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-s>     <Plug>(neosnippet_expand_target)
 
+
+let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git\|^\.coffee'
+
 " SuperTab like snippets behavior.
 "imap <expr><TAB>
 " \ pumvisible() ? "\<C-n>" :
