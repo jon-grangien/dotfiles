@@ -2,7 +2,5 @@ xmodmap ~/.Xmodmap &
 redshift -l 19:58 &
 dropbox &
 
-if [ "$DESKTOP_SESSION" = "i3" ]; then
-    export $(gnome-keyring-daemon -s)
-fi
+export $(gnome-keyring-daemon -s)
 
