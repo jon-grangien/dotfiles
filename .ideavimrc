@@ -23,6 +23,7 @@ nnoremap <Leader>e g_
 nnoremap <Leader>s 0
 nnoremap <Leader>q :q<CR>
 nnoremap <leader>w :w<CR>
+nmap <leader><leader> ``
 noremap <silent> <Leader>+ :vertical resize +5<CR>
 nnoremap <silent> <Leader>- :vertical resize -5<CR>
 imap <Leader><Tab> <Esc>

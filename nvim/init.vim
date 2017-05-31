@@ -2,6 +2,8 @@ set nocompatible              " be iMproved, required
 set hidden
 filetype off                  " required
 
+set encoding=utf8
+
 call plug#begin('~/.config/autoload/plug.vim')
 
 Plug 'scrooloose/nerdtree'
@@ -42,10 +44,26 @@ vnoremap l h
 noremap <C-k> :call feedkeys( line('.')==1 ? '' : 'ddkP' )<CR>
 noremap <C-j> ddp
 nnoremap <silent> <esc> :noh<cr><esc>
-nmap <silent> <A-k> :wincmd k<CR>
-nmap <silent> <A-j> :wincmd j<CR>
-nmap <silent> <A-ö> :wincmd l<CR>
-nmap <silent> <A-l> :wincmd h<CR>
+
+" Use ALT+{a,s,w,d} to navigate windows from any mode
+" ö doesn't work or jklö scheme would be better
+:tnoremap <M-a> <C-\><C-N><C-w>h
+:tnoremap <M-s> <C-\><C-N><C-w>j
+:tnoremap <M-w> <C-\><C-N><C-w>k
+:tnoremap <M-d> <C-\><C-N><C-w>l
+:inoremap <M-a> <C-\><C-N><C-w>h
+:inoremap <M-s> <C-\><C-N><C-w>j
+:inoremap <M-w> <C-\><C-N><C-w>k
+:inoremap <M-d> <C-\><C-N><C-w>l
+:nnoremap <M-a> <C-w>h
+:nnoremap <M-s> <C-w>j
+:nnoremap <M-w> <C-w>k
+:nnoremap <M-d> <C-w>l
+
+"nmap <silent> <A-up> :wincmd k<CR>
+"nmap <silent> <A-down> :wincmd j<CR>
+"nmap <silent> <A-left> :wincmd h<CR>
+"nmap <silent> <A-right> :wincmd l<CR>
 nnoremap <F3>  :NERDTreeToggle<CR>
 nnoremap <F4> :NERDTree<CR>
 nnoremap <Leader>e g_
@@ -59,6 +77,7 @@ nmap <leader>pb :CtrlPBuffer<CR>
 nmap <leader>pm :CtrlPMixed<CR>
 nmap <leader>jj :BuffergatorMruCyclePrev<CR>
 nmap <leader>kk :BuffergatorMruCycleNext<CR>
+nmap <leader><leader> ``
 nmap <Tab> :BuffergatorMruCycleNext<CR>
 nmap <leader><Tab> :BuffergatorMruCyclePrev<CR>
 nmap <leader>o :BuffergatorOpen<CR>
@@ -136,6 +155,7 @@ syntax on		" syntax highlight on by default
 set number		" enable line numbers by default
 set autoindent    	" always set autoindenting on
 set copyindent    	" copy the previous indentation on autoindenting
+set expandtab				" use spaces
 set shiftwidth=2	" auto indent space
 set tabstop=2		" tab space
 set smarttab		" insert tabs on start of line according to shiftwidth
