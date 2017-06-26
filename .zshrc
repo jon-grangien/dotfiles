@@ -5,7 +5,7 @@
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="theunravelercustom"
+ZSH_THEME="agnoster2"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -49,7 +49,7 @@ ZSH_THEME="theunravelercustom"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git z thefuck)
 
 # User configuration
 
@@ -82,6 +82,7 @@ export SSH_KEY_PATH="~/.ssh/id_rsa"
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
+alias rm="rm -i"
 alias l="ls -lXhA"
 alias p="pwd"
 alias goreact="cd ~/Code/codinginspace.github.io"
@@ -89,3 +90,5 @@ alias devreact="cd ~/Code/codinginspace.github.io && nvim"
 alias batstats="upower -i /org/freedesktop/UPower/devices/battery_BAT0"
 alias live="live-server --browser=google-chrome-stable"
 alias zshconf="nvim ~/dotfiles/.zshrc"
+alias timehistory="fc -li 100"
+alias dualmonitorleft="xrandr --output eDP1 --primary --auto --output HDMI1 --auto --right-of eDP1 &"
