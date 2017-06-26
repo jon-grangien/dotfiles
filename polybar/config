@@ -53,7 +53,7 @@ font-3 = fontawesome:pixelsize=10
 
 modules-left = i3 bspwm
 modules-center = 
-modules-right = xbacklight volume cpu memory wlan eth battery date powermenu
+modules-right = xkeyboard xbacklight volume cpu memory wlan eth battery date powermenu
 #modules-right = xbacklight volume xkeyboard memory cpu wlan eth battery temperature date powermenu
 
 tray-position = right
