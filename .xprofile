@@ -1,6 +1,8 @@
-xmodmap ~/.Xmodmap &
 redshift -l 19:58 &
 dropbox &
+xmodmap ~/.Xmodmap &
+xcape -e 'Control_L=Escape' &
+setxkbmap -layout us -variant altgr-intl -option nodeadkeys &
 
 export $(gnome-keyring-daemon -s)
 
