@@ -3,4 +3,4 @@
 	email = jonathan.grangien@gmail.com
 [core]
 	editor = nvim
-	excludesfile = ~/dotfiles/git/.gitignore
+	excludesfile = /home/jonathan/dotfiles/git/.gitignore

@@ -18,12 +18,11 @@ nnoremap <silent> <esc> :noh<cr><esc>
 nmap <silent> <A-k> :wincmd k<CR>
 nmap <silent> <A-j> :wincmd j<CR>
 nmap <silent> <A-ö> :wincmd l<CR>
-nmap <silent> <A-l> :wincmd h<CR>
 nnoremap <Leader>e g_
 nnoremap <Leader>s 0
 nnoremap <Leader>q :q<CR>
 nnoremap <leader>w :w<CR>
-nmap <leader><leader> ``
+nnoremap <leader><leader> ``
 noremap <silent> <Leader>+ :vertical resize +5<CR>
 nnoremap <silent> <Leader>- :vertical resize -5<CR>
 imap <Leader><Tab> <Esc>

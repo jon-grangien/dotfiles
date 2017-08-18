@@ -59,6 +59,9 @@ PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 
 source $ZSH/oh-my-zsh.sh
 
+# RVM
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
@@ -82,7 +85,7 @@ export SSH_KEY_PATH="~/.ssh/id_rsa"
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-alias rm="rm -i"
+alias rm="rm -I"
 alias l="ls -lXhA"
 alias p="pwd"
 alias goreact="cd ~/Code/codinginspace.github.io"
@@ -92,3 +95,7 @@ alias live="live-server --browser=google-chrome-stable"
 alias zshconf="nvim ~/dotfiles/.zshrc"
 alias timehistory="fc -li 100"
 alias dualmonitorleft="xrandr --output eDP1 --primary --auto --output HDMI1 --auto --right-of eDP1 &"
+alias setus="setxkbmap -layout us -variant altgr-intl -option nodeadkeys &"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
