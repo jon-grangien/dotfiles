@@ -1,6 +1,7 @@
 set nocompatible              " be iMproved, required
 set hidden
 filetype off                  " required
+set termguicolors
 
 set encoding=utf8
 
@@ -16,6 +17,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'morhetz/gruvbox'
 Plug 'pangloss/vim-javascript'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'Shougo/deoplete.nvim'
@@ -138,11 +140,18 @@ let g:Tex_FoldedMisc         = ""
 " minimap
 let g:minimap_highlight='Visual'
 
-" Color theme
-"papercolor:
+""" Color theme
+"papercolor
+"set background=dark
+"colorscheme PaperColor
+
+"gruvbox
 set background=dark
-colorscheme PaperColor
-"
+let g:gruvbox_italic=1
+colorscheme gruvbox
+let g:airline_theme='gruvbox'
+
+
 "solarized:
 "let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 "set background=dark " or light
