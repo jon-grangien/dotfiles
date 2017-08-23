@@ -29,7 +29,7 @@ font xft:Literation Mono Powerline 12
 
 ### Custom values
 # Wallpaper
-exec --no-startup-id feh --bg-scale /home/jonathan/.config/i3/wall9.jpg
+exec --no-startup-id feh --bg-scale /home/jonathan/.config/i3/wall10.jpg
 
 # colors variables
 set $bg-color 						#191b2c
@@ -152,6 +152,7 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 bindsym $mod+c exec chromium
+bindsym $mod+b exec "chromium https://codinginspace.github.io/blank-keycaps-fu/"
 
 assign [class="google-chrome-beta"] $ws1
 assign [class="chromium"] $ws1

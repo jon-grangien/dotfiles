@@ -36,6 +36,7 @@ detect-transient = true;
 detect-client-leader = true;
 invert-color-include = [ ];
 # resize-damage = 1;
+respect-prop-shadow = true;
 
 # GLX backend
 # glx-no-stencil = true;
