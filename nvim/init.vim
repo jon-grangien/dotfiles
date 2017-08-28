@@ -116,6 +116,9 @@ if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
 
+" Not for latex
+let g:tex_conceal = ""
+
 set pastetoggle=<F2>
 
 " autostart NERDTree
