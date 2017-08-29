@@ -16,7 +16,7 @@ Plug 'szw/vim-ctrlspace'
 Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jeetsukumaran/vim-buffergator'
-Plug 'NLKNguyen/papercolor-theme'
+"Plug 'NLKNguyen/papercolor-theme'
 Plug 'morhetz/gruvbox'
 Plug 'pangloss/vim-javascript'
 Plug 'terryma/vim-multiple-cursors'
@@ -32,7 +32,7 @@ call plug#end()
 filetype plugin indent on    " required
 
 " remaps
-let mapleader = "\<Space>"
+let mapleader = "/"
 nnoremap , :
 nnoremap j gj
 nnoremap k gk
@@ -112,9 +112,9 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 command! -nargs=0 Sudow w !sudo tee % > /dev/null
 
 " For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
+"if has('conceal')
+"  set conceallevel=2 concealcursor=niv
+"endif
 
 " Not for latex
 let g:tex_conceal = ""
