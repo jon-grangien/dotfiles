@@ -32,7 +32,7 @@ call plug#end()
 filetype plugin indent on    " required
 
 " remaps
-let mapleader = "/"
+let mapleader = "\<Space>"
 nnoremap , :
 nnoremap j gj
 nnoremap k gk
