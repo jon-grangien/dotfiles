@@ -52,8 +52,8 @@ font-2 = siji:pixelsize=10;1
 font-3 = fontawesome:pixelsize=10
 
 modules-left = i3
-modules-center =
-modules-right = xkeyboard xbacklight volume cpu memory wlan eth battery date powermenu
+modules-center = date 
+modules-right = xkeyboard xbacklight volume cpu memory wlan eth battery powermenu
 #modules-right = xbacklight volume xkeyboard memory cpu wlan eth battery temperature date powermenu
 
 tray-position = right
