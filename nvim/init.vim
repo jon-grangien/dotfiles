@@ -85,7 +85,7 @@ nmap <leader><Tab> :BuffergatorMruCyclePrev<CR>
 nmap <leader>o :BuffergatorOpen<CR>
 nnoremap <silent> <Leader>+ :vertical resize +5<CR>
 nnoremap <silent> <Leader>- :vertical resize -5<CR>
-imap <Leader><Tab> <Esc>
+"imap <Leader><Tab> <Esc>
 map <F1> <Esc>
 imap <F1> <Esc>
 
