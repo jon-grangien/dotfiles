@@ -26,6 +26,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'ap/vim-css-color'
 Plug 'blueyed/vim-diminactive'
 Plug 'severin-lemaignan/vim-minimap'
+Plug 'beyondmarc/glsl.vim'
 
 call plug#end()
 
