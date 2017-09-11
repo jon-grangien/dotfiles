@@ -20,11 +20,22 @@ primary = #66ccff
 secondary = #e60053
 alert = #bd2c40
 
-cpu = #c5bfff
-memory = #f8bcff
-wlan = #ffaace
-battery = #ffaab5
-date = #ffc2aa
+gruvboxwhite = #fbf1c7
+gruvboxgray = #928374
+gruvboxyellow = #fabd2f
+gruvboxorange = #fe8019
+gruvboxblue = #83a598
+gruvboxbluedark = #458588
+gruvboxpurple = #d3869b
+gruvboxaqua = #8ec07c
+gruvboxaquadark = #689d6a
+gruvboxbg2 = #504945
+
+date      = ${self.gruvboxwhite}
+cpu       = ${self.gruvboxblue}
+memory    = ${self.gruvboxblue}
+wlan      = ${self.gruvboxblue}
+battery   = ${self.gruvboxblue}
 
 [bar/main]
 ;monitor = ${env:MONITOR:HDMI-1}
@@ -53,7 +64,7 @@ font-3 = fontawesome:pixelsize=10
 
 modules-left = i3
 modules-center = date 
-modules-right = xkeyboard xbacklight volume cpu memory wlan eth battery powermenu
+modules-right = xbacklight volume cpu memory eth battery powermenu
 #modules-right = xbacklight volume xkeyboard memory cpu wlan eth battery temperature date powermenu
 
 tray-position = right
@@ -168,18 +179,18 @@ label-song-ellipsis = true
 type = internal/xbacklight
 
 format = <label> <bar>
-label = BL
+label =
 
 bar-width = 10
-bar-indicator = |
+bar-indicator =
 bar-indicator-foreground = #ff
 bar-indicator-font = 2
 bar-fill = ─
 bar-fill-font = 2
-bar-fill-foreground = #9f78e1
+bar-fill-foreground = ${colors.gruvboxpurple}
 bar-empty = ─
 bar-empty-font = 2
-bar-empty-foreground = ${colors.foreground-alt}
+bar-empty-foreground = ${colors.gruvboxbg2}
 
 [module/backlight-acpi]
 inherit = module/xbacklight
@@ -192,7 +203,8 @@ interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.cpu}
 format-underline = #f90000
-label =  %percentage%%
+;label =  %percentage%%
+label = %percentage%%
 label-foreground = ${colors.cpu}
 
 [module/memory]
@@ -201,7 +213,8 @@ interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #4bffdc
-label =  %gb_used%
+;label =  %gb_used%
+label = %gb_used%
 label-foreground = ${colors.memory}
 
 [module/wlan]
@@ -264,29 +277,32 @@ label-foreground = ${colors.date}
 type = internal/volume
 
 format-volume = <label-volume> <bar-volume>
-label-volume = VOL
-label-volume-foreground = ${root.foreground}
+label-volume =
+label-volume-foreground = ${colors.gruvboxaqua}
 
 format-muted-prefix = " "
-format-muted-foreground = ${colors.foreground-alt}
-label-muted = sound muted
+format-muted-foreground = ${colors.gruvboxbg2}
+label-muted = muted
 
 bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
+bar-volume-foreground-0 = ${colors.gruvboxaqua}
+bar-volume-foreground-1 = ${colors.gruvboxaqua}
+bar-volume-foreground-2 = ${colors.gruvboxaqua}
+bar-volume-foreground-3 = ${colors.gruvboxaqua}
+bar-volume-foreground-4 = ${colors.gruvboxaqua}
+bar-volume-foreground-5 = ${colors.gruvboxaqua}
+bar-volume-foreground-6 = ${colors.gruvboxaqua}
+bar-volume-foreground-7 = ${colors.gruvboxaqua}
+bar-volume-foreground-8 = ${colors.gruvboxyellow}
+bar-volume-foreground-9 = ${colors.gruvboxorange}
 bar-volume-gradient = false
-bar-volume-indicator = |
+bar-volume-indicator =
 bar-volume-indicator-font = 2
 bar-volume-fill = ─
 bar-volume-fill-font = 2
 bar-volume-empty = ─
 bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
+bar-volume-empty-foreground = ${colors.gruvboxbg2}
 
 [module/battery]
 type = internal/battery
@@ -300,6 +316,9 @@ format-charging-underline = #ffb52a
 format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
 
+label-charging = %percentage% 
+label-discharging = %percentage%
+
 label-discharging-foreground = ${colors.battery}
 label-charging-foreground = ${colors.battery}
 
@@ -307,7 +326,7 @@ format-full-prefix = " "
 format-full-prefix-foreground = ${colors.battery}
 format-full-underline = ${self.format-charging-underline}
 
-label-full =  %percentage%%
+label-full =  %percentage%
 label-full-foreground = ${colors.battery}
 
 ramp-capacity-0 = 
@@ -353,7 +372,7 @@ label-open = 
 label-open-foreground = ${colors.secondary}
 label-close =  cancel
 label-close-foreground = ${colors.secondary}
-label-separator = |
+label-separator =
 label-separator-foreground = ${colors.foreground-alt}
 
 menu-0-0 = reboot
