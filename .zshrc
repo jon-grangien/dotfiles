@@ -95,7 +95,7 @@ alias live="live-server --browser=google-chrome-stable"
 alias zshconf="nvim ~/dotfiles/.zshrc"
 alias timehistory="fc -li 100"
 alias dualmonitorleft="xrandr --output eDP1 --primary --auto --output HDMI1 --auto --right-of eDP1 &"
-alias setus="setxkbmap -layout us -variant altgr-intl -option nodeadkeys &"
+alias setus="setxkbmap -layout us -variant altgr-intl -option nodeadkeys"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
