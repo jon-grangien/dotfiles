@@ -28,9 +28,23 @@ Plug 'blueyed/vim-diminactive'
 Plug 'severin-lemaignan/vim-minimap'
 Plug 'beyondmarc/glsl.vim'
 
+" typescript
+Plug 'leafgarland/typescript-vim'
+Plug 'Quray/tsuquyomi'
+
 call plug#end()
 
 filetype plugin indent on    " required
+
+" Function MapToggle 
+" Allows remapping a key to toggling a bool option
+" http://vim.wikia.com/wiki/Quick_generic_option_toggling
+function MapToggle(key, opt)
+  let cmd = ':set '.a:opt.'! \| set '.a:opt."?\<CR>"
+  exec 'nnoremap '.a:key.' '.cmd
+  exec 'inoremap '.a:key." \<C-O>".cmd
+endfunction
+command -nargs=+ MapToggle call MapToggle(<f-args>)
 
 " remaps
 let mapleader = "\<Space>"
@@ -87,8 +101,7 @@ nmap <leader>o :BuffergatorOpen<CR>
 nnoremap <silent> <Leader>+ :vertical resize +5<CR>
 nnoremap <silent> <Leader>- :vertical resize -5<CR>
 "imap <Leader><Tab> <Esc>
-map <F1> <Esc>
-imap <F1> <Esc>
+MapToggle <F1> wrap
 
 """""neosnippet configuration 
 let g:neosnippet#disable_runtime_snippets = { "_": 1, }
@@ -167,6 +180,7 @@ set nowrap		" don't wrap lines
 syntax on		" syntax highlight on by default
 set number		" enable line numbers by default
 set autoindent    	" always set autoindenting on
+set linebreak       " break at linebreak if wrap is set
 set copyindent    	" copy the previous indentation on autoindenting
 set expandtab				" use spaces
 set shiftwidth=2	" auto indent space
