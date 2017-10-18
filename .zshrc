@@ -97,7 +97,7 @@ alias zshconf="nvim ~/dotfiles/.zshrc"
 alias timehistory="fc -li 100"
 alias dualmonitorleft="xrandr --output eDP1 --primary --auto --output HDMI1 --auto --right-of eDP1 &"
 alias setus="setxkbmap -layout us -variant altgr-intl -option nodeadkeys"
-alias genpass="apg -a0 -m 12"
+alias genpass="apg -a0 -m 12 -s"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
