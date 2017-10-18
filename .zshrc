@@ -85,6 +85,7 @@ export SSH_KEY_PATH="~/.ssh/id_rsa"
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
+alias n="nvim"
 alias rm="rm -I"
 alias l="ls -lXhA"
 alias p="pwd"
@@ -96,6 +97,7 @@ alias zshconf="nvim ~/dotfiles/.zshrc"
 alias timehistory="fc -li 100"
 alias dualmonitorleft="xrandr --output eDP1 --primary --auto --output HDMI1 --auto --right-of eDP1 &"
 alias setus="setxkbmap -layout us -variant altgr-intl -option nodeadkeys"
+alias genpass="apg -a0 -m 12"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
