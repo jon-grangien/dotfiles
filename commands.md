@@ -5,3 +5,6 @@
 #### Move several files
 `mv -t destination file1 file2 file3`  
 `mv *identifier* /destination/`  
+
+#### for loop and files
+`for i in {1..6}; do cp lab"$i".pdf TNM079_lab"$i".pdf; done`
