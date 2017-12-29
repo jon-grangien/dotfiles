@@ -86,6 +86,7 @@ export SSH_KEY_PATH="~/.ssh/id_rsa"
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 alias n="nvim"
+alias c="clear"
 alias rm="rm -I"
 alias l="ls -lXhA"
 alias p="pwd"
