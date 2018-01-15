@@ -30,7 +30,7 @@ Plug 'beyondmarc/glsl.vim'
 
 " typescript
 Plug 'leafgarland/typescript-vim'
-Plug 'Quray/tsuquyomi'
+"Plug 'Quray/tsuquyomi'
 
 call plug#end()
 
@@ -51,36 +51,36 @@ let mapleader = "\<Space>"
 nnoremap , :
 nnoremap j gj
 nnoremap k gk
-nnoremap ö l
-nnoremap l h
-nnoremap h /
+"nnoremap ö l
+"nnoremap l h
+"nnoremap h /
 vnoremap <C-c> "+y
-vnoremap ö l 
-vnoremap l h
+"vnoremap ö l 
+"vnoremap l h
 " nnoremap <C-v> "+p
 noremap <C-k> :call feedkeys( line('.')==1 ? '' : 'ddkP' )<CR>
 noremap <C-j> ddp
 nnoremap <silent> <esc> :noh<cr><esc>
 
-" Use ALT+{a,s,w,d} to navigate windows from any mode
-" ö doesn't work or jklö scheme would be better
-:tnoremap <M-a> <C-\><C-N><C-w>h
-:tnoremap <M-s> <C-\><C-N><C-w>j
-:tnoremap <M-w> <C-\><C-N><C-w>k
-:tnoremap <M-d> <C-\><C-N><C-w>l
-:inoremap <M-a> <C-\><C-N><C-w>h
-:inoremap <M-s> <C-\><C-N><C-w>j
-:inoremap <M-w> <C-\><C-N><C-w>k
-:inoremap <M-d> <C-\><C-N><C-w>l
-:nnoremap <M-a> <C-w>h
-:nnoremap <M-s> <C-w>j
-:nnoremap <M-w> <C-w>k
-:nnoremap <M-d> <C-w>l
+" Use ALT+{h,j,k,l} to navigate windows from any mode
+:tnoremap <M-h> <C-\><C-N><C-w>h
+:tnoremap <M-j> <C-\><C-N><C-w>j
+:tnoremap <M-k> <C-\><C-N><C-w>k
+:tnoremap <M-l> <C-\><C-N><C-w>l
+:inoremap <M-h> <C-\><C-N><C-w>h
+:inoremap <M-j> <C-\><C-N><C-w>j
+:inoremap <M-k> <C-\><C-N><C-w>k
+:inoremap <M-l> <C-\><C-N><C-w>l
+:nnoremap <M-h> <C-w>h
+:nnoremap <M-j> <C-w>j
+:nnoremap <M-k> <C-w>k
+:nnoremap <M-l> <C-w>l
 
 "nmap <silent> <A-up> :wincmd k<CR>
 "nmap <silent> <A-down> :wincmd j<CR>
 "nmap <silent> <A-left> :wincmd h<CR>
 "nmap <silent> <A-right> :wincmd l<CR>
+
 nnoremap <F3>  :NERDTreeToggle<CR>
 nnoremap <F4> :NERDTree<CR>
 nnoremap <Leader>e g_
@@ -140,6 +140,7 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " auto start deoplete 
+call deoplete#enable()
 let g:deoplete#enable_at_startup = 1
 
 " populate g:airline_symbols dictionary with powerline symbols
