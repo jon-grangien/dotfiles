@@ -27,3 +27,8 @@
 ## I3 stuff
 #### Find window class name for specifying open as floating window etc.
 `xprop | grep -i 'class'`
+
+## Clean root partition
+`ncdu -x /`
+`sudo pacman -Qdt`
+`pacgraph -c`
