@@ -2,42 +2,42 @@
 font = Literation Mono Powerline 10
 
 [colors]
-# hard contrast: background = #1d2021
-background = #282828
-# soft contrast: background = #32302f
-foreground = #ebdbb2
-foreground_bold = #ebdbb2
 
-# dark0 + gray
-color0 = #282828
-color8 = #928374
+# special
+foreground      = #f0e3c5
+foreground_bold = #f0e3c5
+cursor          = #f0e3c5
+background      = rgba(30, 30, 30, 0.66)
 
-# neutral_red + bright_red
-color1 = #cc241d
-color9 = #fb4934
+# black
+color0  = #282a2e
+color8  = #373b41
 
-# neutral_green + bright_green
-color2 = #98971a
-color10 = #b8bb26
+# red
+color1  = #e1837f
+color9  = #f48d8d
 
-# neutral_yellow + bright_yellow
-color3 = #d79921
-color11 = #fabd2f
+# green
+color2  = #7bcd54
+color10 = #abeea4
 
-# neutral_blue + bright_blue
-color4 = #458588
-color12 = #83a598
+# yellow
+color3  = #e0ac88
+color11 = #f0c674
 
-# neutral_purple + bright_purple
-color5 = #b16286
-color13 = #d3869b
+# blue
+color4  = #5f819d
+color12 = #81a2be
 
-# neutral_aqua + faded_aqua
-color6 = #689d6a
-color14 = #8ec07c
+# magenta
+color5  = #ab7fb9
+color13 = #b294bb
 
-# light4 + light1
-color7 = #a89984
-color15 = #ebdbb2
+# cyan
+color6  = #5e8d87
+color14 = #8abeb7
 
-# vim: ft=dosini cms=#%s
+# white
+color7  = #707880
+color15 = #c5c8c6
+

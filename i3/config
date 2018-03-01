@@ -29,7 +29,8 @@ font xft:Literation Mono Powerline 12
 
 ### Custom values
 # Wallpaper
-exec --no-startup-id feh --bg-scale /home/jonathan/Pictures/wall10.jpg
+# exec --no-startup-id feh --bg-scale /home/jgrangien/.config/i3/wall10.jpg
+exec --no-startup-id nitrogen --restore
 
 # colors variables
 set $bg-color 						#191b2c
@@ -37,7 +38,7 @@ set $inactive-bg-color		#85678f
 set $text-color						#f3f4f5
 set $inactive-text-color	#676E7D
 set $urgent-bg-color			#E53935
-set $active-border				#8ec07c
+set $active-border				#7b97c0
 set $inactive-border			#2f343f
 
 # window colors
@@ -246,8 +247,8 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Other autostarts
 #exec --no-startup-id xss-lock -- /home/jonathan/Scripts/superlock.sh
-exec --no-startup-id compton -b --config /home/jonathan/.config/compton/config
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon  
+exec --no-startup-id compton -b --config /home/jgrangien/.config/compton/config
+exec --no-startup-id gnome-settings-daemon
 exec --no-startup-id nm-applet 
 exec --no-startup-id sleep 2 && xfce4-power-manager
 

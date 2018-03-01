@@ -11,12 +11,12 @@
 ;background = ${xrdb:color0:#222}
 ;background = #22333f (arc darker blue)
 ;background = #4c3850 (purple)
-background = #282828 
+background = #00000000
 background-alt = #689d6a
 ;foreground = ${xrdb:color7:#222}
-foreground = #dfdfdf
-foreground-alt = #555
-primary = #66ccff
+foreground = #aa000000
+foreground-alt = #000000
+primary = #1094a8
 secondary = #e60053
 alert = #bd2c40
 
@@ -24,23 +24,23 @@ gruvboxwhite = #fbf1c7
 gruvboxgray = #928374
 gruvboxyellow = #fabd2f
 gruvboxorange = #fe8019
-gruvboxblue = #83a598
+gruvboxblue = #839ba5
 gruvboxbluedark = #458588
 gruvboxpurple = #d3869b
-gruvboxaqua = #8ec07c
-gruvboxaquadark = #689d6a
+gruvboxaqua = #839ba5
+gruvboxaquadark = #839ba5
 gruvboxbg2 = #504945
 
-date      = ${self.gruvboxwhite}
-cpu       = ${self.gruvboxblue}
-memory    = ${self.gruvboxblue}
-wlan      = ${self.gruvboxblue}
-battery   = ${self.gruvboxblue}
+date      = ${self.foreground}
+cpu      = ${self.foreground}
+memory      = ${self.foreground}
+wlan      = ${self.foreground}
+battery      = ${self.foreground}
 
 [bar/main]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
-height = 24
+height = 32
 ;offset-x = 1%
 ;offset-y = 1%
 fixed-center = true
@@ -48,7 +48,7 @@ fixed-center = true
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 0
+line-size = 4
 line-color = #f00
 
 padding-left = 0
@@ -57,7 +57,7 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = fixed:pixelsize=10;1
+font-0 = fixed:pixelsize=14;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
 font-3 = fontawesome:pixelsize=10
@@ -141,26 +141,26 @@ format = <label-state> <label-mode>
 index-sort = true
 wrapping-scroll = false
 
-label-mode-padding = 2
-label-mode-foreground = #000
-label-mode-background = ${colors.primary}
+label-mode-padding = 3
+label-mode-foreground = #ffffff
+label-mode-background = #ffffff
 
 label-focused = %index%
-label-focused-background = ${module/bspwm.label-focused-background}
-label-focused-underline = ${module/bspwm.label-focused-underline}
-label-focused-padding = ${module/bspwm.label-focused-padding}
+label-focused-background = 
+label-focused-underline = ${colors.primary}
+label-focused-padding = 3
 
 label-unfocused = %index%
-label-unfocused-padding = ${module/bspwm.label-occupied-padding}
+label-unfocused-padding = 3
 
-label-urgent = %index%!
+label-urgent = %index%
 label-urgent-background = ${module/bspwm.label-urgent-background}
-label-urgent-padding = ${module/bspwm.label-urgent-padding}
+label-urgent-padding = 3
 
 label-visible = %index%
 label-visible-background = ${self.label-focused-background}
 label-visible-underline = ${self.label-focused-underline}
-label-visible-padding = ${self.label-focused-padding}
+label-visible-padding = 3
 
 [module/mpd]
 type = internal/mpd
@@ -202,7 +202,7 @@ type = internal/cpu
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.cpu}
-format-underline = #f90000
+format-underline = ${colors.primary}
 ;label =  %percentage%%
 label = %percentage%%
 label-foreground = ${colors.cpu}
@@ -212,7 +212,7 @@ type = internal/memory
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #4bffdc
+format-underline = ${colors.primary}
 ;label =  %gb_used%
 label = %gb_used%
 label-foreground = ${colors.memory}
@@ -223,7 +223,7 @@ interface = wlp2s0
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
-format-connected-underline = #9f78e1
+format-connected-underline = 
 label-connected =  %essid%
 label-connected-foreground = ${colors.wlan}
 
@@ -245,7 +245,7 @@ type = internal/network
 interface = net0
 interval = 3.0
 
-format-connected-underline = #55aa55
+format-connected-underline = 
 format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %local_ip%
@@ -268,7 +268,7 @@ time-alt = %H:%M:%S
 
 format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #0a6cf5
+format-underline = 
 
 label = %date% %time%
 label-foreground = ${colors.date}

@@ -3,12 +3,12 @@ rofi.padding: 40
 rofi.hide-scrollbar: true
 # rofi.show-icons: true
 
-rofi.font: Literation Mono Powerline 28
+rofi.font: Ubuntu Mono 28
 
-rofi.color-window: #3c3836, #3c3836, #00000000
-rofi.color-normal: #3c3836, #f3f4f5, #3c3836, #3c3836, #d3869b
-rofi.color-active: #3c3836, #f3f4f5, #3c3836, #3c3836
-rofi.color-urgent: #3c3836, #f3f4f5, #3c3836, #3c3836, #ff0000
+white: #fffbf7
 
-# rofi.bw: 3
-# rofi.eh: 2
+rofi.color-window: #fffbef, #fffbef, #00000000
+rofi.color-normal: #fffbef, #494949, #fffbef, #fffbef, #407ee8
+rofi.color-active: #fffbef, #f3f4f5, #fffbef, #3c3836
+rofi.color-urgent: #fffbef, #f3f4f5, #fffbef, #fffbef, #ff0000
+
