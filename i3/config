@@ -56,6 +56,9 @@ bindsym $mod+Return exec termite
 # kill focused window
 bindsym $mod+Shift+q kill
 
+# workaround annoying firefox hotkey
+bindsym Ctrl+q exec ~/Scripts/noctrlq.sh
+
 # start rofi
 bindsym $mod+r exec rofi -show run
 
