@@ -60,7 +60,9 @@ module-margin-right = 2
 font-0 = fixed:pixelsize=10;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
-font-3 = fontawesome:pixelsize=10
+font-3 = "Font Awesome 5 Free:style=Regular:pixelsize=12;1"
+font-4 = "Font Awesome 5 Free:style=Solid:pixelsize=12;1"
+font-5 = "Font Awesome 5 Brands:pixelsize=12;1"
 
 modules-left = i3
 modules-center = date 
@@ -179,17 +181,19 @@ label-song-ellipsis = true
 type = internal/xbacklight
 
 format = <label> <bar>
-label =
+;format = <ramp>
+label =  
 
-bar-width = 10
-bar-indicator =
-bar-indicator-foreground = #ff
-bar-indicator-font = 2
-bar-fill = ─
-bar-fill-font = 2
+bar-width = 7
+bar-indicator = —
+bar-indicator-foreground = ${colors.gruvboxpurple}
+bar-indicator-font = 1
+bar-fill = —
+bar-fill-font = 1
 bar-fill-foreground = ${colors.gruvboxpurple}
-bar-empty = ─
-bar-empty-font = 2
+bar-empty = —
+;bar-empty = ─
+bar-empty-font = 1
 bar-empty-foreground = ${colors.gruvboxbg2}
 
 [module/backlight-acpi]
@@ -200,21 +204,21 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
+;format-prefix = " "
 format-prefix-foreground = ${colors.cpu}
 format-underline = #f90000
-;label =  %percentage%%
-label = %percentage%%
+label =   %percentage%%  
+;label = %percentage%%
 label-foreground = ${colors.cpu}
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
+;format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #4bffdc
 ;label =  %gb_used%
-label = %gb_used%
+label = %gb_used%  
 label-foreground = ${colors.memory}
 
 [module/wlan]
@@ -276,15 +280,15 @@ label-foreground = ${colors.date}
 [module/volume]
 type = internal/volume
 
-format-volume = <label-volume> <bar-volume>
-label-volume =
+format-volume = <ramp-volume> <bar-volume>
+label-volume = vol
 label-volume-foreground = ${colors.gruvboxaqua}
 
-format-muted-prefix = " "
+;format-muted-prefix = " "
 format-muted-foreground = ${colors.gruvboxbg2}
-label-muted = muted
+label-muted =  muted
 
-bar-volume-width = 10
+bar-volume-width = 7
 bar-volume-foreground-0 = ${colors.gruvboxaqua}
 bar-volume-foreground-1 = ${colors.gruvboxaqua}
 bar-volume-foreground-2 = ${colors.gruvboxaqua}
@@ -293,16 +297,24 @@ bar-volume-foreground-4 = ${colors.gruvboxaqua}
 bar-volume-foreground-5 = ${colors.gruvboxaqua}
 bar-volume-foreground-6 = ${colors.gruvboxaqua}
 bar-volume-foreground-7 = ${colors.gruvboxaqua}
-bar-volume-foreground-8 = ${colors.gruvboxyellow}
-bar-volume-foreground-9 = ${colors.gruvboxorange}
+bar-volume-foreground-8 = ${colors.gruvboxaqua}
+bar-volume-foreground-9 = ${colors.gruvboxaqua}
 bar-volume-gradient = false
-bar-volume-indicator =
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
+bar-volume-indicator = —
+bar-volume-indicator-font = 1
+bar-volume-indicator-foreground = ${colors.gruvboxaqua}
+;bar-volume-fill = ─
+bar-volume-fill = —
+bar-volume-fill-font = 1
+bar-volume-empty = —
+bar-volume-empty-font = 1
 bar-volume-empty-foreground = ${colors.gruvboxbg2}
+
+ramp-volume-0 =   
+ramp-volume-1 =  
+ramp-volume-2 = 
+
+;bar-empty-foreground = ${colors.gruvboxbg2}
 
 [module/battery]
 type = internal/battery
