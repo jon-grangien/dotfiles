@@ -31,11 +31,11 @@ gruvboxaqua = #839ba5
 gruvboxaquadark = #839ba5
 gruvboxbg2 = #504945
 
-date      = ${self.foreground}
-cpu      = ${self.foreground}
-memory      = ${self.foreground}
-wlan      = ${self.foreground}
-battery      = ${self.foreground}
+date      = ${self.gruvboxwhite}
+cpu      = ${self.fgruvboxwhite}
+memory      = ${self.gruvboxwhite}
+wlan      = ${self.gruvboxwhite}
+battery      = ${self.gruvboxwhite}
 
 [bar/main]
 ;monitor = ${env:MONITOR:HDMI-1}
@@ -46,7 +46,7 @@ height = 32
 fixed-center = true
 
 background = ${colors.background}
-foreground = ${colors.foreground}
+foreground = ${colors.gruvboxwhite}
 
 line-size = 4
 line-color = #f00
@@ -63,8 +63,7 @@ font-2 = siji:pixelsize=10;1
 font-3 = fontawesome:pixelsize=10
 
 modules-left = i3
-modules-center = date 
-modules-right = xbacklight volume cpu memory eth battery powermenu
+modules-right = date xbacklight volume cpu memory eth battery powermenu
 #modules-right = xbacklight volume xkeyboard memory cpu wlan eth battery temperature date powermenu
 
 tray-position = right
@@ -281,7 +280,7 @@ label-volume =
 label-volume-foreground = ${colors.gruvboxaqua}
 
 format-muted-prefix = " "
-format-muted-foreground = ${colors.gruvboxbg2}
+format-muted-foreground = ${colors.gruvboxwhite}
 label-muted = muted
 
 bar-volume-width = 10

@@ -7,7 +7,7 @@ font = Literation Mono Powerline 10
 foreground      = #f0e3c5
 foreground_bold = #f0e3c5
 cursor          = #f0e3c5
-background      = rgba(30, 30, 30, 0.66)
+background      = rgba(30, 30, 30, 0.75)
 
 # black
 color0  = #282a2e

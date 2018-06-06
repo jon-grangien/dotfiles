@@ -30,7 +30,6 @@ font xft:Literation Mono Powerline 12
 ### Custom values
 # Wallpaper
 # exec --no-startup-id feh --bg-scale /home/jgrangien/.config/i3/wall10.jpg
-exec --no-startup-id nitrogen --restore
 
 # colors variables
 set $bg-color 						#191b2c
@@ -38,8 +37,8 @@ set $inactive-bg-color		#85678f
 set $text-color						#f3f4f5
 set $inactive-text-color	#676E7D
 set $urgent-bg-color			#E53935
-set $active-border				#7b97c0
-set $inactive-border			#2f343f
+set $active-border				#adc6ff
+set $inactive-border			#edf6fd
 
 # window colors
 # 												border								background								text											indicator
@@ -162,14 +161,13 @@ bindsym $mod+b exec "firefox-nightly https://codinginspace.github.io/blank-keyca
 bindsym $mod+p exec "~/dotfiles/polybar/launch.sh"
 bindsym $mod+Shift+P exec "~/dotfiles/fixkeyb.sh"
 
-assign [class="google-chrome-beta"] $ws1
-assign [class="chromium"] $ws1
-assign [class="franz"] $ws4
+assign [class="firefox"] $ws1
+assign [class="code"] $ws3
 assign [class="nylas"] $ws4
 assign [class="slack"] $ws4
-assign [class="spotify"] $ws5
 
 for_window [class="SGCT"] floating enable
+for_window [class="Gnome-terminal"] floating enable
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -226,8 +224,9 @@ bindsym Print exec scrot -e 'mv $f ~/Pictures/screenshots/screenshot-%d%m%Y-%H:%
 hide_edge_borders both
 
 # i3 gaps
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 0
 smart_gaps on
+smart_borders on
 gaps inner 15
 
 # Start i3bar to display a workspace bar (plus the system information i3status
@@ -254,4 +253,10 @@ exec --no-startup-id compton -b --config /home/jgrangien/.config/compton/config
 exec --no-startup-id gnome-settings-daemon
 exec --no-startup-id nm-applet 
 exec --no-startup-id sleep 2 && xfce4-power-manager
+exec --no-startup-id xrandr --output DVI-D-0 --auto --primary --output DP-0 --auto --rotate left
+exec --no-startup-id nitrogen --restore
+
+# app autostarts
+exec --no-startup-id firefox
+exec --no-startup-id code
 
