@@ -53,7 +53,8 @@ plugins=(git z)
 
 # User configuration
 
-export PATH="/home/jgrangien/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+export PATH="/home/jgrangien/bin:/usr/bin:/bin:/usr/sbin:/sbin:/home/jgrangien/lib/kameleon/bin:$PATH"
+# export PATH="/home/jgrangien/lib/kameleon/bin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 # PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 
@@ -78,6 +79,8 @@ export EDITOR='nvim'
 
 # ssh
 export SSH_KEY_PATH="~/.ssh/id_rsa"
+eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
+export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
 
 # Other env variables
 
@@ -99,6 +102,8 @@ alias timehistory="fc -li 100"
 alias dualmonitorleft="xrandr --output eDP1 --primary --auto --output HDMI1 --auto --right-of eDP1 &"
 alias setus="setxkbmap -layout us -variant altgr-intl -option nodeadkeys"
 alias genpass="apg -a0 -m 12 -s"
+
+alias gsmu="git submodule update --init --recursive"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
