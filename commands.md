@@ -32,3 +32,7 @@
 `ncdu -x /`
 `sudo pacman -Qdt`
 `pacgraph -c`
+
+## Check system info
+`sudo lshw -C display`
+
