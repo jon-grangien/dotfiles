@@ -1,0 +1,43 @@
+[options]
+font = Literation Mono Powerline 10
+
+[colors]
+
+# special
+foreground      = #f0e3c5
+foreground_bold = #f0e3c5
+cursor          = #f0e3c5
+background      = rgba(30, 30, 30, 0.75)
+
+# black
+color0  = #282a2e
+color8  = #373b41
+
+# red
+color1  = #e1837f
+color9  = #f48d8d
+
+# green
+color2  = #7bcd54
+color10 = #abeea4
+
+# yellow
+color3  = #e0ac88
+color11 = #f0c674
+
+# blue
+color4  = #5f819d
+color12 = #81a2be
+
+# magenta
+color5  = #ab7fb9
+color13 = #b294bb
+
+# cyan
+color6  = #5e8d87
+color14 = #8abeb7
+
+# white
+color7  = #707880
+color15 = #c5c8c6
+
