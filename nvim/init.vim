@@ -27,6 +27,7 @@ Plug 'ap/vim-css-color'
 Plug 'blueyed/vim-diminactive'
 Plug 'severin-lemaignan/vim-minimap'
 Plug 'beyondmarc/glsl.vim'
+Plug 'easymotion/vim-easymotion'
 
 " typescript
 Plug 'leafgarland/typescript-vim'
@@ -83,8 +84,8 @@ nnoremap <silent> <esc> :noh<cr><esc>
 
 nnoremap <F3>  :NERDTreeToggle<CR>
 nnoremap <F4> :NERDTree<CR>
-nnoremap <Leader>e g_
-nnoremap <Leader>s 0
+" nnoremap <Leader>e g_
+" nnoremap <Leader>s 0
 nnoremap <Leader>q :q<CR>
 nnoremap <leader>w :w<CR>
 nmap <leader>l :bnext<CR>
@@ -92,16 +93,21 @@ nmap <leader>h :bprevious<CR>
 nmap <leader>p :CtrlP<CR>
 nmap <leader>pb :CtrlPBuffer<CR>
 nmap <leader>pm :CtrlPMixed<CR>
-nmap <leader>jj :BuffergatorMruCyclePrev<CR>
-nmap <leader>kk :BuffergatorMruCycleNext<CR>
 nmap <leader><leader> ``
 nmap <Tab> :BuffergatorMruCycleNext<CR>
-nmap <leader><Tab> :BuffergatorMruCyclePrev<CR>
+nmap <S-Tab> :BuffergatorMruCyclePrev<CR>
 nmap <leader>o :BuffergatorOpen<CR>
 nnoremap <silent> <Leader>+ :vertical resize +5<CR>
 nnoremap <silent> <Leader>- :vertical resize -5<CR>
 "imap <Leader><Tab> <Esc>
 MapToggle <F1> wrap
+
+""""" easy motion
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+let g:EasyMotion_smartcase = 1
+nmap <Leader>f <Plug>(easymotion-overwin-f)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
 
 """""neosnippet configuration 
 let g:neosnippet#disable_runtime_snippets = { "_": 1, }
@@ -112,7 +118,7 @@ smap <C-s>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-s>     <Plug>(neosnippet_expand_target)
 
 
-let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git\|^\.coffee'
+let g:ctrlp_custom_ignore = 'node_modules\|^build\|^\.DS_Store\|^\.git\|^\.coffee'
 
 " SuperTab like snippets behavior.
 "imap <expr><TAB>
