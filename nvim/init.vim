@@ -1,3 +1,16 @@
+"                                 ___     
+"        ___        ___          /__/\    
+"       /__/\      /  /\        |  |::\   
+"       \  \:\    /  /:/        |  |:|:\  
+"        \  \:\  /__/::\      __|__|:|\:\ 
+"    ___  \__\:\ \__\/\:\__  /__/::::| \:\
+"   /__/\ |  |:|    \  \:\/\ \  \:\~~\__\/
+"   \  \:\|  |:|     \__\::/  \  \:\      
+"    \  \:\__|:|     /__/:/    \  \:\     
+"     \__\::::/      \__\/      \  \:\    
+"         ~~~~                   \__\/    
+
+
 set nocompatible              " be iMproved, required
 set hidden
 filetype off                  " required
@@ -9,7 +22,7 @@ call plug#begin('~/.config/autoload/plug.vim')
 
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/syntastic'
 Plug 'szw/vim-ctrlspace'
@@ -28,6 +41,8 @@ Plug 'blueyed/vim-diminactive'
 Plug 'severin-lemaignan/vim-minimap'
 Plug 'beyondmarc/glsl.vim'
 Plug 'easymotion/vim-easymotion'
+Plug 'jparise/vim-graphql'
+Plug 'w0rp/ale'
 
 " typescript
 Plug 'leafgarland/typescript-vim'
@@ -117,8 +132,15 @@ imap <C-s>     <Plug>(neosnippet_expand_or_jump)
 smap <C-s>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-s>     <Plug>(neosnippet_expand_target)
 
+"""" ALE config
+let g:ale_fixers = {'typescript': ['tslint'], 'javascript': ['prettier', 'eslint']}
+let g:ale_linters = {'typescript': ['tslint'], 'javascript': ['eslint']}
+" let g:ale_completion_enabled=1
+let g:airline#extensions#ale#enabled=1
+let g:ale_fix_on_save=1
 
 let g:ctrlp_custom_ignore = 'node_modules\|^build\|^\.DS_Store\|^\.git\|^\.coffee'
+let g:ctrlp_show_hidden = 1
 
 " SuperTab like snippets behavior.
 "imap <expr><TAB>
@@ -174,6 +196,9 @@ set background=dark
 let g:gruvbox_italic=1
 colorscheme gruvbox
 let g:airline_theme='gruvbox'
+
+" Terminal colors
+"set t_Co=16
 
 
 "solarized:
