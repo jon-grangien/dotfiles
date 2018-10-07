@@ -32,6 +32,7 @@ Plug 'jeetsukumaran/vim-buffergator'
 "Plug 'NLKNguyen/papercolor-theme'
 Plug 'morhetz/gruvbox'
 Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'Shougo/deoplete.nvim'
 Plug 'Shougo/neosnippet.vim'
@@ -43,6 +44,7 @@ Plug 'beyondmarc/glsl.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'jparise/vim-graphql'
 Plug 'w0rp/ale'
+Plug 'prettier/prettier'
 
 " typescript
 Plug 'leafgarland/typescript-vim'
@@ -138,6 +140,10 @@ let g:ale_linters = {'typescript': ['tslint'], 'javascript': ['eslint']}
 " let g:ale_completion_enabled=1
 let g:airline#extensions#ale#enabled=1
 let g:ale_fix_on_save=1
+let g:ale_sign_error = '●' " Less aggressive than the default '>>'
+let g:ale_sign_warning = '.'
+let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
+
 
 let g:ctrlp_custom_ignore = 'node_modules\|^build\|^\.DS_Store\|^\.git\|^\.coffee'
 let g:ctrlp_show_hidden = 1
