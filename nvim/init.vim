@@ -33,7 +33,8 @@ Plug 'jeetsukumaran/vim-buffergator'
 Plug 'morhetz/gruvbox'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
-Plug 'terryma/vim-multiple-cursors'
+"Plug 'terryma/vim-multiple-cursors'
+Plug 'mxw/vim-jsx'
 Plug 'Shougo/deoplete.nvim'
 Plug 'Shougo/neosnippet.vim'
 Plug 'scrooloose/nerdcommenter'
@@ -72,37 +73,16 @@ nnoremap k gk
 "nnoremap ö l
 "nnoremap l h
 "nnoremap h /
-vnoremap <C-c> "+y
+"vnoremap <C-c> "+y
 "vnoremap ö l 
 "vnoremap l h
 " nnoremap <C-v> "+p
-noremap <C-k> :call feedkeys( line('.')==1 ? '' : 'ddkP' )<CR>
-noremap <C-j> ddp
+"noremap <C-k> :call feedkeys( line('.')==1 ? '' : 'ddkP' )<CR>
+"noremap <C-j> ddp
 nnoremap <silent> <esc> :noh<cr><esc>
-
-" Use ALT+{h,j,k,l} to navigate windows from any mode
-:tnoremap <M-h> <C-\><C-N><C-w>h
-:tnoremap <M-j> <C-\><C-N><C-w>j
-:tnoremap <M-k> <C-\><C-N><C-w>k
-:tnoremap <M-l> <C-\><C-N><C-w>l
-:inoremap <M-h> <C-\><C-N><C-w>h
-:inoremap <M-j> <C-\><C-N><C-w>j
-:inoremap <M-k> <C-\><C-N><C-w>k
-:inoremap <M-l> <C-\><C-N><C-w>l
-:nnoremap <M-h> <C-w>h
-:nnoremap <M-j> <C-w>j
-:nnoremap <M-k> <C-w>k
-:nnoremap <M-l> <C-w>l
-
-"nmap <silent> <A-up> :wincmd k<CR>
-"nmap <silent> <A-down> :wincmd j<CR>
-"nmap <silent> <A-left> :wincmd h<CR>
-"nmap <silent> <A-right> :wincmd l<CR>
 
 nnoremap <F3>  :NERDTreeToggle<CR>
 nnoremap <F4> :NERDTree<CR>
-" nnoremap <Leader>e g_
-" nnoremap <Leader>s 0
 nnoremap <Leader>q :q<CR>
 nnoremap <leader>w :w<CR>
 nmap <leader>l :bnext<CR>
@@ -116,15 +96,25 @@ nmap <S-Tab> :BuffergatorMruCyclePrev<CR>
 nmap <leader>o :BuffergatorOpen<CR>
 nnoremap <silent> <Leader>+ :vertical resize +5<CR>
 nnoremap <silent> <Leader>- :vertical resize -5<CR>
-"imap <Leader><Tab> <Esc>
 MapToggle <F1> wrap
+
+nmap <silent> <A-up> :wincmd k<CR>
+nmap <silent> <A-down> :wincmd j<CR>
+nmap <silent> <A-left> :wincmd h<CR>
+nmap <silent> <A-right> :wincmd l<CR>
 
 """"" easy motion
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 let g:EasyMotion_smartcase = 1
 nmap <Leader>f <Plug>(easymotion-overwin-f)
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
+map <Leader>e <Plug>(easymotion-j)
+map <Leader>i <Plug>(easymotion-k)
+
+" colemak movement
+nmap <M-n> h
+nmap <M-e> gj
+nmap <M-i> gk
+nmap <M-o> l
 
 """""neosnippet configuration 
 let g:neosnippet#disable_runtime_snippets = { "_": 1, }
