@@ -8,18 +8,7 @@
 ;=====================================================
 
 [colors]
-;background = ${xrdb:color0:#222}
-;background = #22333f (arc darker blue)
-;background = #4c3850 (purple)
-background = #282828 
-background-alt = #689d6a
-;foreground = ${xrdb:color7:#222}
-foreground = #dfdfdf
-foreground-alt = #555
-primary = #66ccff
-secondary = #e60053
-alert = #bd2c40
-
+; gruvbox
 gruvboxwhite = #fbf1c7
 gruvboxgray = #928374
 gruvboxyellow = #fabd2f
@@ -31,11 +20,43 @@ gruvboxaqua = #8ec07c
 gruvboxaquadark = #689d6a
 gruvboxbg2 = #504945
 
-date      = ${self.gruvboxwhite}
-cpu       = ${self.gruvboxblue}
-memory    = ${self.gruvboxblue}
-wlan      = ${self.gruvboxblue}
-battery   = ${self.gruvboxblue}
+# theme
+color-background=#5e96c1
+color-foreground=#413E5F
+color0=#fdfbfb
+color1=#EFB2B9
+color2=#B0B6CF
+color3=#D1B9C7
+color4=#F1BCC2
+color5=#BBC3DB
+color6=#AFD5F8
+color7=#413E5F
+color8=#928a8c
+muted = #49494900
+
+main-text = ${self.color-foreground}
+main-bar-bg = #001E2541
+main-ws-highlight = ${self.color1}
+
+;background = ${xrdb:color0:#222}
+;background = #22333f (arc darker blue)
+;background = #4c3850 (purple)
+background = ${self.main-bar-bg}
+background-alt = ${self.main-ws-highlight}
+;foreground = ${xrdb:color7:#222}
+foreground = ${self.main-text}
+foreground-alt = #babfb9
+
+primary = #8f2d38
+secondary = #9effa1
+alert = #9e324d
+
+date       = ${self.foreground}
+xbacklight = ${self.main-text}
+volume     = ${self.main-text}
+cpu        = ${self.main-text}
+memory     = ${self.main-text}
+battery    = ${self.main-text}
 
 [bar/main]
 ;monitor = ${env:MONITOR:HDMI-1}
@@ -57,22 +78,24 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = fixed:pixelsize=10;1
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = siji:pixelsize=10;1
-font-3 = "Font Awesome 5 Free:style=Regular:pixelsize=12;1"
-font-4 = "Font Awesome 5 Free:style=Solid:pixelsize=12;1"
-font-5 = "Font Awesome 5 Brands:pixelsize=12;1"
+font-0 = "Anonumoush Pro:size=10;0"
+font-1 = fixed:pixelsize=10;1
+font-2 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-3 = siji:pixelsize=10;1
+font-4 = "Anonymous Pro:pixelsize=12;1"
+font-5 = "Font Awesome 5 Free:style=Regular:pixelsize=12;1"
+font-6 = "Font Awesome 5 Free:style=Solid:pixelsize=12;1"
+font-7 = "Font Awesome 5 Brands:pixelsize=12;1"
 
 modules-left = i3
 modules-center = date 
-modules-right = xbacklight volume cpu memory eth battery powermenu
+modules-right = xkeyboard xbacklight volume cpu memory eth battery powermenu
 #modules-right = xbacklight volume xkeyboard memory cpu wlan eth battery temperature date powermenu
 
 tray-position = right
-tray-padding = 2
-;tray-transparent = true
-;tray-background = #0063ff
+;tray-padding = 2
+tray-transparent = true
+;tray-background = ${colors.background}
 
 ;wm-restack = bspwm
 ;wm-restack = i3
@@ -94,16 +117,16 @@ type = internal/xkeyboard
 blacklist-0 = num lock
 
 format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-prefix-underline = ${colors.secondary}
+format-prefix-foreground = ${colors.color1}
+format-prefix-underline = ${colors.color1}
 
 label-layout = %layout%
-label-layout-underline = ${colors.secondary}
+label-layout-underline = ${colors.color1}
 
 label-indicator-padding = 2
 label-indicator-margin = 1
-label-indicator-background = ${colors.secondary}
-label-indicator-underline = ${colors.secondary}
+label-indicator-background = ${colors.color1}
+label-indicator-underline = ${colors.color1}
 
 [module/filesystem]
 type = internal/fs
@@ -183,18 +206,19 @@ type = internal/xbacklight
 format = <label> <bar>
 ;format = <ramp>
 label =  
+label-foreground = ${colors.xbacklight}
 
-bar-width = 7
+bar-width = 4
 bar-indicator = —
-bar-indicator-foreground = ${colors.gruvboxpurple}
+bar-indicator-foreground = ${colors.xbacklight}
 bar-indicator-font = 1
 bar-fill = —
 bar-fill-font = 1
-bar-fill-foreground = ${colors.gruvboxpurple}
+bar-fill-foreground = ${colors.xbacklight}
 bar-empty = —
 ;bar-empty = ─
 bar-empty-font = 1
-bar-empty-foreground = ${colors.gruvboxbg2}
+bar-empty-foreground = ${colors.muted}
 
 [module/backlight-acpi]
 inherit = module/xbacklight
@@ -288,31 +312,35 @@ label-volume-foreground = ${colors.gruvboxaqua}
 format-muted-foreground = ${colors.gruvboxbg2}
 label-muted =  muted
 
-bar-volume-width = 7
-bar-volume-foreground-0 = ${colors.gruvboxaqua}
-bar-volume-foreground-1 = ${colors.gruvboxaqua}
-bar-volume-foreground-2 = ${colors.gruvboxaqua}
-bar-volume-foreground-3 = ${colors.gruvboxaqua}
-bar-volume-foreground-4 = ${colors.gruvboxaqua}
-bar-volume-foreground-5 = ${colors.gruvboxaqua}
-bar-volume-foreground-6 = ${colors.gruvboxaqua}
-bar-volume-foreground-7 = ${colors.gruvboxaqua}
-bar-volume-foreground-8 = ${colors.gruvboxaqua}
-bar-volume-foreground-9 = ${colors.gruvboxaqua}
+bar-volume-width = 4
+bar-volume-foreground-0 = ${colors.volume}
+bar-volume-foreground-1 = ${colors.volume}
+bar-volume-foreground-2 = ${colors.volume}
+bar-volume-foreground-3 = ${colors.volume}
+bar-volume-foreground-4 = ${colors.volume}
+bar-volume-foreground-5 = ${colors.volume}
+bar-volume-foreground-6 = ${colors.volume}
+bar-volume-foreground-7 = ${colors.volume}
+bar-volume-foreground-8 = ${colors.volume}
+bar-volume-foreground-9 = ${colors.volume}
 bar-volume-gradient = false
 bar-volume-indicator = —
 bar-volume-indicator-font = 1
-bar-volume-indicator-foreground = ${colors.gruvboxaqua}
+bar-volume-indicator-foreground = ${colors.volume}
 ;bar-volume-fill = ─
 bar-volume-fill = —
 bar-volume-fill-font = 1
 bar-volume-empty = —
 bar-volume-empty-font = 1
-bar-volume-empty-foreground = ${colors.gruvboxbg2}
+bar-volume-empty-foreground = ${colors.muted}
 
 ramp-volume-0 =   
 ramp-volume-1 =  
 ramp-volume-2 = 
+
+ramp-volume-0-foreground = ${colors.volume}
+ramp-volume-1-foreground = ${colors.volume}
+ramp-volume-2-foreground = ${colors.volume}
 
 ;bar-empty-foreground = ${colors.gruvboxbg2}
 

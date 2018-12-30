@@ -1,0 +1,5 @@
+! ~/.Xresources
+
+! Colors
+#include "/home/jonathan/dotfiles/themes/manta/manta.Xresources"
+
