@@ -23,14 +23,16 @@ call plug#begin('~/.config/autoload/plug.vim')
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/syntastic'
 Plug 'szw/vim-ctrlspace'
 Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jeetsukumaran/vim-buffergator'
-"Plug 'NLKNguyen/papercolor-theme'
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'morhetz/gruvbox'
+Plug 'AlessandroYorba/Sierra'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 "Plug 'terryma/vim-multiple-cursors'
@@ -91,8 +93,8 @@ nmap <leader>p :CtrlP<CR>
 nmap <leader>pb :CtrlPBuffer<CR>
 nmap <leader>pm :CtrlPMixed<CR>
 nmap <leader><leader> ``
-nmap <Tab> :BuffergatorMruCycleNext<CR>
-nmap <S-Tab> :BuffergatorMruCyclePrev<CR>
+nmap <Tab> :BuffergatorMruCyclePrev<CR>
+nmap <S-Tab> :BuffergatorMruCycleNext<CR>
 nmap <leader>o :BuffergatorOpen<CR>
 nnoremap <silent> <Leader>+ :vertical resize +5<CR>
 nnoremap <silent> <Leader>- :vertical resize -5<CR>
@@ -183,15 +185,17 @@ let g:Tex_FoldedMisc         = ""
 let g:minimap_highlight='Visual'
 
 """ Color theme
-"papercolor
-"set background=dark
-"colorscheme PaperColor
+set background=light
+"let g:sierra_Twilight = 1
+colorscheme PaperColor
+let g:airline_theme='papercolor'
 
 "gruvbox
-set background=dark
-let g:gruvbox_italic=1
-colorscheme gruvbox
-let g:airline_theme='gruvbox'
+"set background=dark
+"let g:gruvbox_italic=1
+"colorscheme gruvbox
+"let g:airline_theme='gruvbox'
+
 
 " Terminal colors
 "set t_Co=16
