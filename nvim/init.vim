@@ -96,8 +96,10 @@ nmap <leader><leader> ``
 nmap <Tab> :BuffergatorMruCyclePrev<CR>
 nmap <S-Tab> :BuffergatorMruCycleNext<CR>
 nmap <leader>o :BuffergatorOpen<CR>
-nnoremap <silent> <Leader>+ :vertical resize +5<CR>
-nnoremap <silent> <Leader>- :vertical resize -5<CR>
+nnoremap <silent> <M-a> :vertical resize +10<CR>
+nnoremap <silent> <M-r> :vertical resize -10<CR>
+nnoremap <silent> <M-s> :resize +5<CR>
+nnoremap <silent> <M-t> :resize -5<CR>
 MapToggle <F1> wrap
 
 nmap <silent> <A-up> :wincmd k<CR>
