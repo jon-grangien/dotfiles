@@ -2,32 +2,35 @@ set nocompatible              " be iMproved, required
 set hidden
 filetype off                  " required
 
+" remaps
 let mapleader = "\<Space>"
 nnoremap , :
-"nnoremap j gj
-"nnoremap k gk
-nnoremap ö l
-nnoremap l h
-nnoremap h /
+nnoremap j gj
+nnoremap k gk
+"nnoremap ö l
+"nnoremap l h
+"nnoremap h /
 vnoremap <C-c> "+y
-vnoremap ö l 
-vnoremap l h
+"vnoremap ö l 
+"vnoremap l h
+" nnoremap <C-v> "+p
 noremap <C-k> :call feedkeys( line('.')==1 ? '' : 'ddkP' )<CR>
 noremap <C-j> ddp
 nnoremap <silent> <esc> :noh<cr><esc>
-nmap <silent> <A-k> :wincmd k<CR>
-nmap <silent> <A-j> :wincmd j<CR>
-nmap <silent> <A-ö> :wincmd l<CR>
-nnoremap <Leader>e g_
-nnoremap <Leader>s 0
-nnoremap <Leader>q :q<CR>
-nnoremap <leader>w :w<CR>
-nnoremap <leader><leader> ``
-noremap <silent> <Leader>+ :vertical resize +5<CR>
-nnoremap <silent> <Leader>- :vertical resize -5<CR>
-imap <Leader><Tab> <Esc>
-map <F1> <Esc>
-imap <F1> <Esc>
+
+" Use ALT+{h,j,k,l} to navigate windows from any mode
+:tnoremap <M-h> <C-\><C-N><C-w>h
+:tnoremap <M-j> <C-\><C-N><C-w>j
+:tnoremap <M-k> <C-\><C-N><C-w>k
+:tnoremap <M-l> <C-\><C-N><C-w>l
+:inoremap <M-h> <C-\><C-N><C-w>h
+:inoremap <M-j> <C-\><C-N><C-w>j
+:inoremap <M-k> <C-\><C-N><C-w>k
+:inoremap <M-l> <C-\><C-N><C-w>l
+:nnoremap <M-h> <C-w>h
+:nnoremap <M-j> <C-w>j
+:nnoremap <M-k> <C-w>k
+:nnoremap <M-l> <C-w>l
 
 set ignorecase	" case insensitive search
 set smartcase		" case insensitive search unless one uppercase char is used
