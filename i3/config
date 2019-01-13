@@ -170,6 +170,7 @@ assign [class="slack"] $ws4
 assign [class="spotify"] $ws5
 
 for_window [class="SGCT"] floating enable
+for_window [class="ray tracer"] floating enable
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
