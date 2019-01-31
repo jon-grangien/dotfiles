@@ -41,6 +41,7 @@ Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 Plug 'Shougo/deoplete.nvim'
 Plug 'Shougo/denite.nvim'
 Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/denite.nvim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'ap/vim-css-color'
 Plug 'blueyed/vim-diminactive'
