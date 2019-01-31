@@ -18,7 +18,7 @@ set termguicolors
 
 set encoding=utf8
 
-call plug#begin('~/.config/autoload/plug.vim')
+call plug#begin('~/.config/autoload/plug.vim/')
 
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -37,13 +37,16 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 "Plug 'terryma/vim-multiple-cursors'
 Plug 'mxw/vim-jsx'
+Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/denite.nvim'
 Plug 'Shougo/neosnippet.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'ap/vim-css-color'
 Plug 'blueyed/vim-diminactive'
 Plug 'severin-lemaignan/vim-minimap'
-Plug 'beyondmarc/glsl.vim'
+"Plug 'beyondmarc/glsl.vim'
+Plug 'tikhomirov/vim-glsl'
 Plug 'easymotion/vim-easymotion'
 Plug 'jparise/vim-graphql'
 Plug 'w0rp/ale'
@@ -87,6 +90,7 @@ nnoremap <F3>  :NERDTreeToggle<CR>
 nnoremap <F4> :NERDTree<CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <leader>w :w<CR>
+nnoremap <leader>v gv<Esc>
 nmap <leader>l :bnext<CR>
 nmap <leader>h :bprevious<CR>
 nmap <leader>p :CtrlP<CR>
