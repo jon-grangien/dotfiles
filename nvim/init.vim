@@ -119,10 +119,8 @@ map <Leader>e <Plug>(easymotion-j)
 map <Leader>i <Plug>(easymotion-k)
 
 " colemak movement
-nmap <M-n> h
-nmap <M-e> gj
-nmap <M-i> gk
-nmap <M-o> l
+nmap <C-n> gj
+nmap <C-e> gk
 
 """""neosnippet configuration 
 let g:neosnippet#disable_runtime_snippets = { "_": 1, }
