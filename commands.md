@@ -32,3 +32,8 @@
 `ncdu -x /`
 `sudo pacman -Qdt`
 `pacgraph -c`
+
+## Git
+#### Set windows line endings locally in a repo
+`git config --local core.autocrlf true`
+
