@@ -1,0 +1,23 @@
+" Special
+let wallpaper  = "/home/jonathan/dotfiles/i3/wall13.png"
+let background = "#fdfbfb"
+let foreground = "#413E5F"
+let cursor     = "#413E5F"
+
+" Colors
+let color0  = "#fdfbfb"
+let color1  = "#EFB2B9"
+let color2  = "#B0B6CF"
+let color3  = "#D1B9C7"
+let color4  = "#F1BCC2"
+let color5  = "#BBC3DB"
+let color6  = "#AFD5F8"
+let color7  = "#413E5F"
+let color8  = "#928a8c"
+let color9  = "#EFB2B9"
+let color10 = "#B0B6CF"
+let color11 = "#D1B9C7"
+let color12 = "#F1BCC2"
+let color13 = "#BBC3DB"
+let color14 = "#AFD5F8"
+let color15 = "#413E5F"

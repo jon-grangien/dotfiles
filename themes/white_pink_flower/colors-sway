@@ -1,0 +1,21 @@
+set $wallpaper /home/jonathan/dotfiles/i3/wall13.png
+
+set $background #fdfbfb
+set $foreground #413E5F
+
+set $color0 #fdfbfb
+set $color1 #EFB2B9
+set $color2 #B0B6CF
+set $color3 #D1B9C7
+set $color4 #F1BCC2
+set $color5 #BBC3DB
+set $color6 #AFD5F8
+set $color7 #413E5F
+set $color8 #928a8c
+set $color9 #EFB2B9
+set $color10 #B0B6CF
+set $color11 #D1B9C7
+set $color12 #F1BCC2
+set $color13 #BBC3DB
+set $color14 #AFD5F8
+set $color15 #413E5F

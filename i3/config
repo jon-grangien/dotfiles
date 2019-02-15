@@ -29,7 +29,7 @@ font xft:Literation Mono Powerline 12
 
 ### Custom values
 # Wallpaper
-exec --no-startup-id feh --bg-scale /home/jonathan/.config/i3/wall10.jpg
+exec --no-startup-id feh --bg-scale /home/jonathan/.config/i3/wall13.png
 
 # colors variables
 set $bg-color 						#191b2c
@@ -37,8 +37,9 @@ set $inactive-bg-color		#85678f
 set $text-color						#f3f4f5
 set $inactive-text-color	#676E7D
 set $urgent-bg-color			#E53935
-set $active-border				#8ec07c
-set $inactive-border			#2f343f
+
+set $active-border				#BBC3DB
+set $inactive-border			#ffeff4
 
 # window colors
 # 												border								background								text											indicator
@@ -68,10 +69,10 @@ bindsym $mod+r exec rofi -show run
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up 
-bindsym $mod+l focus right
+bindsym $mod+n focus left
+bindsym $mod+e focus down
+bindsym $mod+i focus up 
+bindsym $mod+o focus right
 #bindsym $mod+odiaeresis focus right
 #bindsym $mod+semicolon focus right
 
@@ -82,10 +83,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindsym $mod+Shift+n move left
+bindsym $mod+Shift+e move down
+bindsym $mod+Shift+i move up
+bindsym $mod+Shift+o move right
 #bindsym $mod+Shift+odiaeresis move right
 #bindsym $mod+Shift+semicolon move right
 
@@ -96,7 +97,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+g split h
+bindsym $mod+h split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -107,7 +108,7 @@ bindsym $mod+f fullscreen toggle
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+t layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -169,38 +170,51 @@ assign [class="slack"] $ws4
 assign [class="spotify"] $ws5
 
 for_window [class="SGCT"] floating enable
+for_window [class="ray tracer"] floating enable
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+  # left will shrink the window’s width.
+  # right will grow the window’s width.
+  # up will shrink the window’s height.
+  # down will grow the window’s height.
+  bindsym n resize shrink width 10 px or 10 ppt
+  bindsym e resize grow height 10 px or 10 ppt
+  bindsym i resize shrink height 10 px or 10 ppt
+  bindsym o resize grow width 10 px or 10 ppt
+  #bindsym odiaeresis resize grow width 10 px or 10 ppt
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
-        #bindsym odiaeresis resize grow width 10 px or 10 ppt
-        #bindsym semicolon resize grow width 10 px or 10 ppt
+  # same bindings, but for the arrow keys
+  bindsym Left resize shrink width 10 px or 10 ppt
+  bindsym Down resize grow height 10 px or 10 ppt
+  bindsym Up resize shrink height 10 px or 10 ppt
+  bindsym Right resize grow width 10 px or 10 ppt
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+  # gaps
+  bindsym a  gaps inner current plus 10
+  bindsym r gaps inner current minus 10
+  bindsym s  gaps outer current plus 10
+  bindsym t gaps outer current minus 10
+  bindsym Shift+a  gaps inner all plus 10
+  bindsym Shift+r gaps inner all minus 10
+  bindsym Shift+s  gaps outer all plus 10
+  bindsym Shift+t gaps outer all minus 10
 
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+  bindsym q     gaps outer current set 0
+  bindsym w     gaps inner current set 0
+  bindsym f     gaps outer all set 0
+  bindsym p     gaps inner all set 0
+
+  # back to normal: Enter or Escape
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
 }
 
 bindsym $mod+x mode "resize"
@@ -217,7 +231,7 @@ bindsym Control+$mod+b exec xbacklight -set 100
 
 # Lock
 #bindsym Control+$mod+l exec /home/jonathan/Scripts/superlock.sh
-bindsym Control+$mod+l exec /usr/bin/i3lock-fancy -t "Jamen lås upp då"
+bindsym Control+$mod+l exec /usr/bin/i3lock-fancy -t "Speak friend and enter"
 
 # Screenshot
 bindsym Print exec scrot -e 'mv $f ~/Pictures/screenshots/screenshot-%d%m%Y-%H:%M.jpg 2>/dev/null'
@@ -225,8 +239,8 @@ bindsym Print exec scrot -e 'mv $f ~/Pictures/screenshots/screenshot-%d%m%Y-%H:%
 hide_edge_borders both
 
 # i3 gaps
-for_window [class="^.*"] border pixel 1
-smart_gaps on
+for_window [class="^.*"] border pixel 3
+# smart_gaps on
 gaps inner 15
 
 # Start i3bar to display a workspace bar (plus the system information i3status

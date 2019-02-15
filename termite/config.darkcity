@@ -1,0 +1,45 @@
+[options]
+#font = Literation Mono Powerline 14 
+font = Meslo LG M for Powerline 15
+size_hints = true
+
+[colors]
+# hard contrast: background = #1d2021
+background = #0f151e
+# soft contrast: background = #32302f
+foreground = #babfb9
+foreground_bold = #babfb9
+
+# dark0 + gray
+color0 = #0f151e
+color8 = #828581
+
+# neutral_red + bright_red
+color1 = #8f2d38
+color9 = #8f2d38
+
+# neutral_green + bright_green
+color2 = #9effa1
+color10 = #9effa1
+
+# neutral_yellow + bright_yellow
+color3 = #9e324d
+color11 = #9e324d
+
+# neutral_blue + bright_blue
+color4 = #a65565
+color12 = #a65565
+
+# neutral_purple + bright_purple
+color5 = #9f6795
+color13 = #9f6795
+
+# neutral_aqua + faded_aqua
+color6 = #505e8d
+color14 = #505e8d
+
+# light4 + light1
+color7 = #babfb9
+color15 = #babfb9
+
+# vim: ft=dosini cms=#%s

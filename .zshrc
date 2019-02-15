@@ -5,7 +5,8 @@
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="agnoster2"
+ZSH_THEME=""
+
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -59,6 +60,13 @@ PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 
 source $ZSH/oh-my-zsh.sh
 
+# pure prompt
+autoload -U promptinit; promptinit
+prompt pure
+
+# syntax highlighting
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 # RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
@@ -99,6 +107,7 @@ alias timehistory="fc -li 100"
 alias dualmonitorleft="xrandr --output eDP1 --primary --auto --output HDMI1 --auto --right-of eDP1 &"
 alias setus="setxkbmap -layout us -variant altgr-intl -option nodeadkeys"
 alias genpass="apg -a0 -m 12 -s"
+alias lg="lazygit"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
