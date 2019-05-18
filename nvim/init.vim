@@ -1,15 +1,18 @@
-"                                 ___     
-"        ___        ___          /__/\    
-"       /__/\      /  /\        |  |::\   
-"       \  \:\    /  /:/        |  |:|:\  
-"        \  \:\  /__/::\      __|__|:|\:\ 
-"    ___  \__\:\ \__\/\:\__  /__/::::| \:\
-"   /__/\ |  |:|    \  \:\/\ \  \:\~~\__\/
-"   \  \:\|  |:|     \__\::/  \  \:\      
-"    \  \:\__|:|     /__/:/    \  \:\     
-"     \__\::::/      \__\/      \  \:\    
-"         ~~~~                   \__\/    
+"  ___      ___ ___  _____ ______      
+" |\  \    /  /|\  \|\   _ \  _   \    
+" \ \  \  /  / | \  \ \  \\\__\ \  \   
+"  \ \  \/  / / \ \  \ \  \\|__| \  \  
+"   \ \    / /   \ \  \ \  \    \ \  \ 
+"    \ \__/ /     \ \__\ \__\    \ \__\
+"     \|__|/       \|__|\|__|     \|__|
+"                                      
 
+let s:is_windows = has('win32') || has('win64')
+
+if s:is_windows
+  let g:python_host_prog="C:/Python27/python.exe"
+  let g:python3_host_prog="C:/Python37-32/python.exe"
+endif
 
 set nocompatible              " be iMproved, required
 set hidden
@@ -17,7 +20,6 @@ filetype off                  " required
 set termguicolors
 
 set encoding=utf8
-
 call plug#begin('~/.config/autoload/plug.vim')
 
 Plug 'scrooloose/nerdtree'
@@ -71,18 +73,10 @@ command -nargs=+ MapToggle call MapToggle(<f-args>)
 
 " remaps
 let mapleader = "\<Space>"
+let maplocalleader = "\\"
 nnoremap , :
 nnoremap j gj
 nnoremap k gk
-"nnoremap ö l
-"nnoremap l h
-"nnoremap h /
-"vnoremap <C-c> "+y
-"vnoremap ö l 
-"vnoremap l h
-" nnoremap <C-v> "+p
-"noremap <C-k> :call feedkeys( line('.')==1 ? '' : 'ddkP' )<CR>
-"noremap <C-j> ddp
 nnoremap <silent> <esc> :noh<cr><esc>
 
 nnoremap <F3>  :NERDTreeToggle<CR>
@@ -116,11 +110,25 @@ nmap <Leader>f <Plug>(easymotion-overwin-f)
 map <Leader>e <Plug>(easymotion-j)
 map <Leader>i <Plug>(easymotion-k)
 
-" colemak movement
+" colemak movement on regular keyboard
 nmap <M-n> h
 nmap <M-e> gj
 nmap <M-i> gk
 nmap <M-o> l
+
+"" sessions
+" make
+map <Leader>ss1 :mks! ~/.vimsessions/session1.vim<CR>
+map <Leader>ss2 :mks! ~/.vimsessions/session2.vim<CR>
+map <Leader>ss3 :mks! ~/.vimsessions/session3.vim<CR>
+map <Leader>ss4 :mks! ~/.vimsessions/session4.vim<CR>
+map <Leader>ss5 :mks! ~/.vimsessions/session5.vim<CR>
+" restore
+map <Leader>sr1 :so ~/.vimsessions/session1.vim<CR>
+map <Leader>sr2 :so ~/.vimsessions/session2.vim<CR>
+map <Leader>sr3 :so ~/.vimsessions/session3.vim<CR>
+map <Leader>sr4 :so ~/.vimsessions/session4.vim<CR>
+map <Leader>sr5 :so ~/.vimsessions/session5.vim<CR>
 
 """""neosnippet configuration 
 let g:neosnippet#disable_runtime_snippets = { "_": 1, }
@@ -139,7 +147,6 @@ let g:ale_fix_on_save=1
 let g:ale_sign_error = '●' " Less aggressive than the default '>>'
 let g:ale_sign_warning = '.'
 let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
-
 
 let g:ctrlp_custom_ignore = 'node_modules\|^build\|^\.DS_Store\|^\.git\|^\.coffee'
 let g:ctrlp_show_hidden = 1
