@@ -6,3 +6,4 @@ tags
 bundle/*
 !bundle/Vundle.vim
 
+plugs/*

@@ -18,9 +18,13 @@ set nocompatible              " be iMproved, required
 set hidden
 filetype off                  " required
 set termguicolors
+set cmdheight=2
+set updatetime=300
+set shortmess+=c
+set signcolumn=yes
 
 set encoding=utf8
-call plug#begin('~/.config/autoload/plug.vim')
+call plug#begin('~/.config/nvim/plugs')
 
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -30,19 +34,28 @@ Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/syntastic'
 Plug 'szw/vim-ctrlspace'
 Plug 'tpope/vim-fugitive'
-Plug 'ctrlpvim/ctrlp.vim'
+
+Plug 'ctrlpvim/ctrlp.vim' "explore others
+
+if s:is_windows
+  Plug 'neoclide/coc.nvim', {'tag': '*', 'do': 'install.cmd'}
+else
+  Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+endif
+
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'morhetz/gruvbox'
 Plug 'AlessandroYorba/Sierra'
-Plug 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript' "is this necessary
 Plug 'mxw/vim-jsx'
 "Plug 'terryma/vim-multiple-cursors'
 Plug 'mxw/vim-jsx'
-Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+"Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+Plug 'HerringtonDarkholme/yats.vim'
 Plug 'Shougo/deoplete.nvim'
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/denite.nvim'
+"Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/denite.nvim' "look up usage
 Plug 'scrooloose/nerdcommenter'
 Plug 'ap/vim-css-color'
 Plug 'blueyed/vim-diminactive'
@@ -54,7 +67,7 @@ Plug 'w0rp/ale'
 Plug 'prettier/prettier'
 
 " typescript
-Plug 'leafgarland/typescript-vim'
+"Plug 'leafgarland/typescript-vim'
 "Plug 'Quray/tsuquyomi'
 
 call plug#end()
@@ -70,6 +83,20 @@ function MapToggle(key, opt)
   exec 'inoremap '.a:key." \<C-O>".cmd
 endfunction
 command -nargs=+ MapToggle call MapToggle(<f-args>)
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+
+"function! s:show_documentation()
+"  if (index(['vim','help'], &filetype) >= 0)
+"    execute 'h '.expand('<cword>')
+"  else
+"    call CocAction('doHover')
+"  endif
+"endfunction
 
 " remaps
 let mapleader = "\<Space>"
@@ -97,6 +124,23 @@ nnoremap <silent> <M-r> :vertical resize -10<CR>
 nnoremap <silent> <M-s> :resize +5<CR>
 nnoremap <silent> <M-t> :resize -5<CR>
 MapToggle <F1> wrap
+"nmap <leader>rn <Plug>(coc-rename)
+"xmap <leader>fo <Plug>(coc-format-selected)
+"nmap <leader>fo <Plug>(coc-format-selected)
+"nmap <leader>qf  <Plug>(coc-fix-current)
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use tab for trigger completion with characters ahead and navigate.
+"inoremap <silent><expr> <TAB>
+"      \ pumvisible() ? "\<C-n>" :
+"      \ <SID>check_back_space() ? "\<TAB>" :
+"      \ coc#refresh()
+"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+"inoremap <silent><expr> <c-space> coc#refresh()
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+"inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 nmap <silent> <A-up> :wincmd k<CR>
 nmap <silent> <A-down> :wincmd j<CR>
@@ -115,6 +159,24 @@ nmap <M-n> h
 nmap <M-e> gj
 nmap <M-i> gk
 nmap <M-o> l
+
+" CoCList
+" Show all diagnostics
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+"" Manage extensions
+"nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+"" Show commands
+"nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+"" Find symbol of current document
+"nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+"" Search workspace symbols
+"nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+"" Do default action for next item.
+"nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+"" Do default action for previous item.
+"nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+"" Resume latest coc list
+"nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 "" sessions
 " make
@@ -161,6 +223,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 
 " Commands
 command! -nargs=0 Sudow w !sudo tee % > /dev/null
+"command! -nargs=0 Format :call CocAction('format')
 
 " For conceal markers.
 "if has('conceal')
