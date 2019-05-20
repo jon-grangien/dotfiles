@@ -18,14 +18,15 @@ set nocompatible              " be iMproved, required
 set hidden
 filetype off                  " required
 set termguicolors
+set encoding=utf8
+
+" good for coc list
 set cmdheight=2
 set updatetime=300
 set shortmess+=c
 set signcolumn=yes
 
-set encoding=utf8
 call plug#begin('~/.config/nvim/plugs')
-
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'vim-airline/vim-airline'
@@ -34,7 +35,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/syntastic'
 Plug 'szw/vim-ctrlspace'
 Plug 'tpope/vim-fugitive'
-
 Plug 'ctrlpvim/ctrlp.vim' "explore others
 
 if s:is_windows
@@ -49,12 +49,9 @@ Plug 'morhetz/gruvbox'
 Plug 'AlessandroYorba/Sierra'
 Plug 'pangloss/vim-javascript' "is this necessary
 Plug 'mxw/vim-jsx'
-"Plug 'terryma/vim-multiple-cursors'
 Plug 'mxw/vim-jsx'
-"Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'Shougo/deoplete.nvim'
-"Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/denite.nvim' "look up usage
 Plug 'scrooloose/nerdcommenter'
 Plug 'ap/vim-css-color'
@@ -65,11 +62,6 @@ Plug 'easymotion/vim-easymotion'
 Plug 'jparise/vim-graphql'
 Plug 'w0rp/ale'
 Plug 'prettier/prettier'
-
-" typescript
-"Plug 'leafgarland/typescript-vim'
-"Plug 'Quray/tsuquyomi'
-
 call plug#end()
 
 filetype plugin indent on    " required
@@ -89,14 +81,13 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-
-"function! s:show_documentation()
-"  if (index(['vim','help'], &filetype) >= 0)
-"    execute 'h '.expand('<cword>')
-"  else
-"    call CocAction('doHover')
-"  endif
-"endfunction
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
 " remaps
 let mapleader = "\<Space>"
@@ -124,23 +115,28 @@ nnoremap <silent> <M-r> :vertical resize -10<CR>
 nnoremap <silent> <M-s> :resize +5<CR>
 nnoremap <silent> <M-t> :resize -5<CR>
 MapToggle <F1> wrap
-"nmap <leader>rn <Plug>(coc-rename)
-"xmap <leader>fo <Plug>(coc-format-selected)
-"nmap <leader>fo <Plug>(coc-format-selected)
-"nmap <leader>qf  <Plug>(coc-fix-current)
+
+" cd root location into current buffer's dir
+nnoremap <leader>cd :lcd %:p:h<CR>:pwd<CR>
+
+nmap <leader>rn <Plug>(coc-rename)
+xmap <leader>cf <Plug>(coc-format-selected)
+nmap <leader>cf <Plug>(coc-format-selected)
+nmap <leader>qf  <Plug>(coc-fix-current)
 imap <C-l> <Plug>(coc-snippets-expand)
+nnoremap <leader>d :call <SID>show_documentation()<CR>
 
 " Use tab for trigger completion with characters ahead and navigate.
-"inoremap <silent><expr> <TAB>
-"      \ pumvisible() ? "\<C-n>" :
-"      \ <SID>check_back_space() ? "\<TAB>" :
-"      \ coc#refresh()
-"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-"inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <c-space> coc#refresh()
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
-"inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 nmap <silent> <A-up> :wincmd k<CR>
 nmap <silent> <A-down> :wincmd j<CR>
@@ -200,12 +196,14 @@ imap <C-s>     <Plug>(neosnippet_expand_or_jump)
 smap <C-s>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-s>     <Plug>(neosnippet_expand_target)
 
+"let g:markdown_fenced_languages = ['html', 'vim', 'ts']
+
 """" ALE config
 let g:ale_fixers = {'typescript': ['tslint'], 'javascript': ['prettier', 'eslint']}
 let g:ale_linters = {'typescript': ['tslint'], 'javascript': ['eslint']}
 " let g:ale_completion_enabled=1
 let g:airline#extensions#ale#enabled=1
-let g:ale_fix_on_save=1
+"let g:ale_fix_on_save=1
 let g:ale_sign_error = '●' " Less aggressive than the default '>>'
 let g:ale_sign_warning = '.'
 let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
@@ -258,7 +256,7 @@ let g:Tex_FoldedMisc         = ""
 " minimap
 let g:minimap_highlight='Visual'
 
-""" Color theme
+" Color theme
 set background=light
 "let g:sierra_Twilight = 1
 colorscheme PaperColor
