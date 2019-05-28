@@ -25,6 +25,7 @@ set cmdheight=2
 set updatetime=300
 set shortmess+=c
 set signcolumn=yes
+let NVIM_COC_LOG_LEVEL = 'debug'
 
 call plug#begin('~/.config/nvim/plugs')
 Plug 'scrooloose/nerdtree'
@@ -35,7 +36,10 @@ Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/syntastic'
 Plug 'szw/vim-ctrlspace'
 Plug 'tpope/vim-fugitive'
-Plug 'ctrlpvim/ctrlp.vim' "explore others
+Plug 'tmsvg/pear-tree'
+"9Plug 'ctrlpvim/ctrlp.vim' "explore others
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
 
 if s:is_windows
   Plug 'neoclide/coc.nvim', {'tag': '*', 'do': 'install.cmd'}
@@ -49,7 +53,6 @@ Plug 'morhetz/gruvbox'
 Plug 'AlessandroYorba/Sierra'
 Plug 'pangloss/vim-javascript' "is this necessary
 Plug 'mxw/vim-jsx'
-Plug 'mxw/vim-jsx'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'Shougo/deoplete.nvim'
 Plug 'Shougo/denite.nvim' "look up usage
@@ -57,6 +60,8 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'ap/vim-css-color'
 Plug 'blueyed/vim-diminactive'
 Plug 'severin-lemaignan/vim-minimap'
+Plug 'jceb/vim-orgmode'
+Plug 'vim-scripts/utl.vim'
 Plug 'beyondmarc/glsl.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'jparise/vim-graphql'
@@ -99,17 +104,20 @@ nnoremap <silent> <esc> :noh<cr><esc>
 
 nnoremap <F3>  :NERDTreeToggle<CR>
 nnoremap <F4> :NERDTree<CR>
+nnoremap <F6> :NERDTreeFind<CR>
+nnoremap <F7> :NERDTreeVCS<CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <leader>w :w<CR>
 nmap <leader>l :bnext<CR>
 nmap <leader>h :bprevious<CR>
-nmap <leader>p :CtrlP<CR>
-nmap <leader>pb :CtrlPBuffer<CR>
-nmap <leader>pm :CtrlPMixed<CR>
+"nmap <leader>p :CtrlP<CR>
+"nmap <leader>pb :CtrlPBuffer<CR>
+"nmap <leader>pm :CtrlPMixed<CR>
 nmap <leader><leader> ``
 nmap <Tab> :BuffergatorMruCyclePrev<CR>
 nmap <S-Tab> :BuffergatorMruCycleNext<CR>
 nmap <leader>o :BuffergatorOpen<CR>
+nmap <leader>so :so ~/dotfiles/nvim/init.vim<CR>
 nnoremap <silent> <M-a> :vertical resize +10<CR>
 nnoremap <silent> <M-r> :vertical resize -10<CR>
 nnoremap <silent> <M-s> :resize +5<CR>
@@ -117,14 +125,18 @@ nnoremap <silent> <M-t> :resize -5<CR>
 MapToggle <F1> wrap
 
 " cd root location into current buffer's dir
-nnoremap <leader>cd :lcd %:p:h<CR>:pwd<CR>
+nnoremap <leader>cd :lcd %:p:h<CR>:NERDTreeCWD<CR>:pwd<CR>
 
 nmap <leader>rn <Plug>(coc-rename)
 xmap <leader>cf <Plug>(coc-format-selected)
 nmap <leader>cf <Plug>(coc-format-selected)
 nmap <leader>qf  <Plug>(coc-fix-current)
 imap <C-l> <Plug>(coc-snippets-expand)
-nnoremap <leader>d :call <SID>show_documentation()<CR>
+
+nnoremap <leader>do :call <SID>show_documentation()<CR>
+nnoremap <leader>dd <Plug>(coc-definition)
+nnoremap <leader>dr <Plug>(coc-references)
+nnoremap <leader>di <Plug>(coc-implementation)
 
 " Use tab for trigger completion with characters ahead and navigate.
 inoremap <silent><expr> <TAB>
@@ -208,8 +220,9 @@ let g:ale_sign_error = '●' " Less aggressive than the default '>>'
 let g:ale_sign_warning = '.'
 let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
 
-let g:ctrlp_custom_ignore = 'node_modules\|^build\|^\.DS_Store\|^\.git\|^\.coffee'
-let g:ctrlp_show_hidden = 1
+silent! nmap <C-p> :GFiles --exclude-standard --others --cached<CR>
+"let g:ctrlp_custom_ignore = 'node_modules\|^build\|^\.DS_Store\|^\.git\|^\.coffee'
+"let g:ctrlp_show_hidden = 1
 
 " SuperTab like snippets behavior.
 "imap <expr><TAB>
@@ -233,9 +246,12 @@ let g:tex_conceal = ""
 
 set pastetoggle=<F2>
 
-" autostart NERDTree
+" NERDTree settings
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+let NERDTreeChDirMode = 2
+let NERDTreeShowHidden = 1
+let NERDTreeWinPos = "right"
 
 " auto start deoplete 
 call deoplete#enable()
@@ -257,10 +273,10 @@ let g:Tex_FoldedMisc         = ""
 let g:minimap_highlight='Visual'
 
 " Color theme
-set background=light
-"let g:sierra_Twilight = 1
-colorscheme PaperColor
-let g:airline_theme='papercolor'
+set background=dark
+let g:sierra_Twilight = 1
+colorscheme Sierra
+let g:airline_theme='sierra'
 
 "gruvbox
 "set background=dark
