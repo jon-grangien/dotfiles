@@ -54,7 +54,7 @@ Plug 'AlessandroYorba/Sierra'
 Plug 'pangloss/vim-javascript' "is this necessary
 Plug 'mxw/vim-jsx'
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'Shougo/deoplete.nvim'
+"Plug 'Shougo/deoplete.nvim'
 Plug 'Shougo/denite.nvim' "look up usage
 Plug 'scrooloose/nerdcommenter'
 Plug 'ap/vim-css-color'
@@ -110,13 +110,13 @@ nnoremap <Leader>q :q<CR>
 nnoremap <leader>w :w<CR>
 nmap <leader>l :bnext<CR>
 nmap <leader>h :bprevious<CR>
+nmap <leader>v :vsp<CR>
 "nmap <leader>p :CtrlP<CR>
 "nmap <leader>pb :CtrlPBuffer<CR>
 "nmap <leader>pm :CtrlPMixed<CR>
 nmap <leader><leader> ``
 nmap <Tab> :BuffergatorMruCyclePrev<CR>
 nmap <S-Tab> :BuffergatorMruCycleNext<CR>
-nmap <leader>o :BuffergatorOpen<CR>
 nmap <leader>so :so ~/dotfiles/nvim/init.vim<CR>
 nnoremap <silent> <M-a> :vertical resize +10<CR>
 nnoremap <silent> <M-r> :vertical resize -10<CR>
@@ -137,6 +137,8 @@ nnoremap <leader>do :call <SID>show_documentation()<CR>
 nnoremap <leader>dd <Plug>(coc-definition)
 nnoremap <leader>dr <Plug>(coc-references)
 nnoremap <leader>di <Plug>(coc-implementation)
+
+nnoremap <leader>a :Ag<CR>
 
 " Use tab for trigger completion with characters ahead and navigate.
 inoremap <silent><expr> <TAB>
@@ -169,22 +171,19 @@ nmap <M-i> gk
 nmap <M-o> l
 
 " CoCList
-" Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-"" Manage extensions
-"nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-"" Show commands
-"nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-"" Find symbol of current document
-"nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-"" Search workspace symbols
-"nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+nnoremap <leader>li  :<C-u>CocList diagnostics<cr>
+nnoremap <leader>o  :<C-u>CocList outline<cr>
+nnoremap <leader>sy  :<C-u>CocList -I symbols<cr>
+nnoremap <leader>lr  :<C-u>CocListResume<CR>
+
 "" Do default action for next item.
 "nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 "" Do default action for previous item.
 "nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-"" Resume latest coc list
-"nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+"" Manage extensions
+"nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+"" Show commands
+"nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 
 "" sessions
 " make
@@ -201,12 +200,12 @@ map <Leader>sr4 :so ~/.vimsessions/session4.vim<CR>
 map <Leader>sr5 :so ~/.vimsessions/session5.vim<CR>
 
 """""neosnippet configuration 
-let g:neosnippet#disable_runtime_snippets = { "_": 1, }
-let g:neosnippet#enable_snipmate_compatibility = 1
-let g:neosnippet#snippets_directory='~/.config/nvim/snippets/'
-imap <C-s>     <Plug>(neosnippet_expand_or_jump)
-smap <C-s>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-s>     <Plug>(neosnippet_expand_target)
+"let g:neosnippet#disable_runtime_snippets = { "_": 1, }
+"let g:neosnippet#enable_snipmate_compatibility = 1
+"let g:neosnippet#snippets_directory='~/.config/nvim/snippets/'
+"imap <C-s>     <Plug>(neosnippet_expand_or_jump)
+"smap <C-s>     <Plug>(neosnippet_expand_or_jump)
+"xmap <C-s>     <Plug>(neosnippet_expand_target)
 
 "let g:markdown_fenced_languages = ['html', 'vim', 'ts']
 
@@ -215,22 +214,18 @@ let g:ale_fixers = {'typescript': ['tslint'], 'javascript': ['prettier', 'eslint
 let g:ale_linters = {'typescript': ['tslint'], 'javascript': ['eslint']}
 " let g:ale_completion_enabled=1
 let g:airline#extensions#ale#enabled=1
+let g:airline#extensions#coc=1
 "let g:ale_fix_on_save=1
 let g:ale_sign_error = '●' " Less aggressive than the default '>>'
 let g:ale_sign_warning = '.'
 let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
 
 silent! nmap <C-p> :GFiles --exclude-standard --others --cached<CR>
+silent! nmap <C-S-p> :Buffers<CR>
+silent! nmap <C-l> :BLines<CR>
+silent! nmap <C-m> :Marks<CR>
 "let g:ctrlp_custom_ignore = 'node_modules\|^build\|^\.DS_Store\|^\.git\|^\.coffee'
 "let g:ctrlp_show_hidden = 1
-
-" SuperTab like snippets behavior.
-"imap <expr><TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ neosnippet#expandable_or_jumpable() ?
-" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " Commands
 command! -nargs=0 Sudow w !sudo tee % > /dev/null
@@ -254,8 +249,8 @@ let NERDTreeShowHidden = 1
 let NERDTreeWinPos = "right"
 
 " auto start deoplete 
-call deoplete#enable()
-let g:deoplete#enable_at_startup = 1
+"call deoplete#enable()
+"let g:deoplete#enable_at_startup = 1
 
 " populate g:airline_symbols dictionary with powerline symbols
 let g:airline_powerline_fonts = 1
@@ -273,8 +268,8 @@ let g:Tex_FoldedMisc         = ""
 let g:minimap_highlight='Visual'
 
 " Color theme
-set background=dark
-let g:sierra_Twilight = 1
+set background=light
+let g:sierra_Twilight = 0
 colorscheme Sierra
 let g:airline_theme='sierra'
 
