@@ -94,6 +94,21 @@ function! s:show_documentation()
   endif
 endfunction
 
+" Commands
+command! -nargs=0 Sudow w !sudo tee % > /dev/null
+"command! -nargs=0 Format :call CocAction('format')
+
+let s:ag_secondary_options = ' --one-device --skip-vcs-ignores --smart-case '
+
+command! -bang -nargs=* Ag
+  \ call fzf#vim#ag(
+  \   <q-args>,
+  \   s:ag_secondary_options,
+  \  <bang>0 ? fzf#vim#with_preview('up:60%')
+  \        : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0
+  \ )
+
 " remaps
 let mapleader = "\<Space>"
 let maplocalleader = "\\"
@@ -176,6 +191,8 @@ nnoremap <leader>o  :<C-u>CocList outline<cr>
 nnoremap <leader>sy  :<C-u>CocList -I symbols<cr>
 nnoremap <leader>lr  :<C-u>CocListResume<CR>
 
+nnoremap <leader>gb :Gblame<CR>
+
 "" Do default action for next item.
 "nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 "" Do default action for previous item.
@@ -226,10 +243,6 @@ silent! nmap <C-l> :BLines<CR>
 silent! nmap <C-m> :Marks<CR>
 "let g:ctrlp_custom_ignore = 'node_modules\|^build\|^\.DS_Store\|^\.git\|^\.coffee'
 "let g:ctrlp_show_hidden = 1
-
-" Commands
-command! -nargs=0 Sudow w !sudo tee % > /dev/null
-"command! -nargs=0 Format :call CocAction('format')
 
 " For conceal markers.
 "if has('conceal')
