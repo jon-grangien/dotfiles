@@ -27,12 +27,19 @@ set shortmess+=c
 set signcolumn=yes
 let NVIM_COC_LOG_LEVEL = 'debug'
 
+if GuiName() == 'nvim-qt'
+  GuiPopupmenu 0 
+  GuiTabline 0
+  GuiFont! Meslo\ LG\ M\ for\ Powerline:h10
+endif
+
 call plug#begin('~/.config/nvim/plugs')
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-rooter'
 Plug 'scrooloose/syntastic'
 Plug 'szw/vim-ctrlspace'
 Plug 'tpope/vim-fugitive'
@@ -58,7 +65,7 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'Shougo/denite.nvim' "look up usage
 Plug 'scrooloose/nerdcommenter'
 Plug 'ap/vim-css-color'
-Plug 'blueyed/vim-diminactive'
+"Plug 'blueyed/vim-diminactive'
 Plug 'severin-lemaignan/vim-minimap'
 Plug 'jceb/vim-orgmode'
 Plug 'vim-scripts/utl.vim'
@@ -125,13 +132,10 @@ nnoremap <Leader>q :q<CR>
 nnoremap <leader>w :w<CR>
 nmap <leader>l :bnext<CR>
 nmap <leader>h :bprevious<CR>
-nmap <leader>v :vsp<CR>
-"nmap <leader>p :CtrlP<CR>
-"nmap <leader>pb :CtrlPBuffer<CR>
-"nmap <leader>pm :CtrlPMixed<CR>
+nmap <leader>v :vs<CR>
 nmap <leader><leader> ``
-nmap <Tab> :BuffergatorMruCyclePrev<CR>
-nmap <S-Tab> :BuffergatorMruCycleNext<CR>
+nmap <Tab> gt
+nmap <S-Tab> gT
 nmap <leader>so :so ~/dotfiles/nvim/init.vim<CR>
 nnoremap <silent> <M-a> :vertical resize +10<CR>
 nnoremap <silent> <M-r> :vertical resize -10<CR>
@@ -139,68 +143,38 @@ nnoremap <silent> <M-s> :resize +5<CR>
 nnoremap <silent> <M-t> :resize -5<CR>
 MapToggle <F1> wrap
 
-" cd root location into current buffer's dir
-nnoremap <leader>cd :lcd %:p:h<CR>:NERDTreeCWD<CR>:pwd<CR>
-
-nmap <leader>rn <Plug>(coc-rename)
-xmap <leader>cf <Plug>(coc-format-selected)
-nmap <leader>cf <Plug>(coc-format-selected)
-nmap <leader>qf  <Plug>(coc-fix-current)
-imap <C-l> <Plug>(coc-snippets-expand)
-
-nnoremap <leader>do :call <SID>show_documentation()<CR>
-nnoremap <leader>dd <Plug>(coc-definition)
-nnoremap <leader>dr <Plug>(coc-references)
-nnoremap <leader>di <Plug>(coc-implementation)
-
-nnoremap <leader>a :Ag<CR>
-
-" Use tab for trigger completion with characters ahead and navigate.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-inoremap <silent><expr> <c-space> coc#refresh()
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-nmap <silent> <A-up> :wincmd k<CR>
-nmap <silent> <A-down> :wincmd j<CR>
-nmap <silent> <A-left> :wincmd h<CR>
-nmap <silent> <A-right> :wincmd l<CR>
-
-""""" easy motion
-let g:EasyMotion_do_mapping = 0 " Disable default mappings
-let g:EasyMotion_smartcase = 1
-nmap <Leader>f <Plug>(easymotion-overwin-f)
-map <Leader>e <Plug>(easymotion-j)
-map <Leader>i <Plug>(easymotion-k)
-
 " colemak movement on regular keyboard
 nmap <M-n> h
 nmap <M-e> gj
 nmap <M-i> gk
 nmap <M-o> l
 
-" CoCList
-nnoremap <leader>li  :<C-u>CocList diagnostics<cr>
-nnoremap <leader>o  :<C-u>CocList outline<cr>
-nnoremap <leader>sy  :<C-u>CocList -I symbols<cr>
-nnoremap <leader>lr  :<C-u>CocListResume<CR>
+" nav split panes
+nmap <silent> <C-up> :wincmd k<CR>
+nmap <silent> <C-down> :wincmd j<CR>
+nmap <silent> <C-left> :wincmd h<CR>
+nmap <silent> <C-right> :wincmd l<CR>
+
+" nav buffers
+nmap <silent> <A-left> :BuffergatorMruCyclePrev<CR>
+nmap <silent> <A-right> :BuffergatorMruCycleNext<CR>
+
+" Fuzzy finding
+nnoremap <leader>a :Ag<CR>
+nnoremap <leader>r :Rg<CR>
+
+silent! nmap <C-p> :GFiles --exclude-standard --others --cached<CR>
+silent! nmap <leader>p :Buffers<CR>
+silent! nmap <C-l> :BLines<CR>
+silent! nmap <C-m> :Marks<CR>
+"let g:ctrlp_custom_ignore = 'node_modules\|^build\|^\.DS_Store\|^\.git\|^\.coffee'
+"let g:ctrlp_show_hidden = 1
+
+" cd root location into current buffer's dir
+nnoremap <leader>cd :lcd %:p:h<CR>:NERDTreeCWD<CR>:pwd<CR>
+nnoremap <leader>cr :Rooter<CR>
 
 nnoremap <leader>gb :Gblame<CR>
-
-"" Do default action for next item.
-"nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-"" Do default action for previous item.
-"nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-"" Manage extensions
-"nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-"" Show commands
-"nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 
 "" sessions
 " make
@@ -216,6 +190,51 @@ map <Leader>sr3 :so ~/.vimsessions/session3.vim<CR>
 map <Leader>sr4 :so ~/.vimsessions/session4.vim<CR>
 map <Leader>sr5 :so ~/.vimsessions/session5.vim<CR>
 
+" COC
+nmap <leader>rn <Plug>(coc-rename)
+xmap <leader>cf <Plug>(coc-format-selected)
+nmap <leader>cf <Plug>(coc-format-selected)
+nmap <leader>qf  <Plug>(coc-fix-current)
+imap <C-l> <Plug>(coc-snippets-expand)
+
+nnoremap <leader>li  :<C-u>CocList diagnostics<cr>
+nnoremap <leader>o  :<C-u>CocList outline<cr>
+nnoremap <leader>sy  :<C-u>CocList -I symbols<cr>
+nnoremap <leader>lr  :<C-u>CocListResume<CR>
+
+"" Do default action for next item.
+"nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+"" Do default action for previous item.
+"nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+"" Manage extensions
+"nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+"" Show commands
+"nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+
+nnoremap <leader>do :call <SID>show_documentation()<CR>
+nnoremap <leader>dd <Plug>(coc-definition)
+nnoremap <leader>dr <Plug>(coc-references)
+nnoremap <leader>di <Plug>(coc-implementation)
+
+" Use tab for trigger completion with characters ahead and navigate.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+inoremap <silent><expr> <c-space> coc#refresh()
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" easy motion
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+let g:EasyMotion_smartcase = 1
+nmap <Leader>f <Plug>(easymotion-overwin-f)
+map <Leader>e <Plug>(easymotion-j)
+map <Leader>i <Plug>(easymotion-k)
+
 """""neosnippet configuration 
 "let g:neosnippet#disable_runtime_snippets = { "_": 1, }
 "let g:neosnippet#enable_snipmate_compatibility = 1
@@ -226,7 +245,10 @@ map <Leader>sr5 :so ~/.vimsessions/session5.vim<CR>
 
 "let g:markdown_fenced_languages = ['html', 'vim', 'ts']
 
-"""" ALE config
+" Rooter
+let g:rooter_manual_only = 1
+
+" ALE config
 let g:ale_fixers = {'typescript': ['tslint'], 'javascript': ['prettier', 'eslint']}
 let g:ale_linters = {'typescript': ['tslint'], 'javascript': ['eslint']}
 " let g:ale_completion_enabled=1
@@ -236,13 +258,6 @@ let g:airline#extensions#coc=1
 let g:ale_sign_error = '●' " Less aggressive than the default '>>'
 let g:ale_sign_warning = '.'
 let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
-
-silent! nmap <C-p> :GFiles --exclude-standard --others --cached<CR>
-silent! nmap <C-S-p> :Buffers<CR>
-silent! nmap <C-l> :BLines<CR>
-silent! nmap <C-m> :Marks<CR>
-"let g:ctrlp_custom_ignore = 'node_modules\|^build\|^\.DS_Store\|^\.git\|^\.coffee'
-"let g:ctrlp_show_hidden = 1
 
 " For conceal markers.
 "if has('conceal')
@@ -281,16 +296,16 @@ let g:Tex_FoldedMisc         = ""
 let g:minimap_highlight='Visual'
 
 " Color theme
-set background=light
-let g:sierra_Twilight = 0
-colorscheme Sierra
-let g:airline_theme='sierra'
+"set background=light
+"let g:sierra_Twilight = 0
+"colorscheme Sierra
+"let g:airline_theme='sierra'
 
-"gruvbox
-"set background=dark
-"let g:gruvbox_italic=1
-"colorscheme gruvbox
-"let g:airline_theme='gruvbox'
+" gruvbox
+set background=dark
+let g:gruvbox_italic=1
+colorscheme gruvbox
+let g:airline_theme='gruvbox'
 
 
 " Terminal colors
