@@ -27,12 +27,6 @@ set shortmess+=c
 set signcolumn=yes
 let NVIM_COC_LOG_LEVEL = 'debug'
 
-if GuiName() == 'nvim-qt'
-  GuiPopupmenu 0 
-  GuiTabline 0
-  GuiFont! Meslo\ LG\ M\ for\ Powerline:h10
-endif
-
 call plug#begin('~/.config/nvim/plugs')
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -77,6 +71,12 @@ Plug 'prettier/prettier'
 call plug#end()
 
 filetype plugin indent on    " required
+
+if exists("*GuiName") && GuiName() == 'nvim-qt'
+  GuiPopupmenu 0 
+  GuiTabline 0
+  GuiFont! Meslo\ LG\ M\ for\ Powerline:h10
+endif
 
 " Function MapToggle 
 " Allows remapping a key to toggling a bool option
