@@ -14,11 +14,36 @@ if s:is_windows
   let g:python3_host_prog="C:/Python37-32/python.exe"
 endif
 
+let mapleader = "\<Space>"
+let maplocalleader = "\\"
+
+" Main options
 set nocompatible              " be iMproved, required
 set hidden
 filetype off                  " required
 set termguicolors
 set encoding=utf8
+
+" Quality of life settings
+set nowrap
+syntax on
+set number
+set autoindent
+set linebreak
+set copyindent
+set expandtab
+set shiftwidth=2
+set tabstop=2
+set smarttab
+set shiftround
+set ignorecase
+set smartcase
+set incsearch
+set history=1000
+set undolevels=1000
+set title
+set nobackup
+set noswapfile
 
 " good for coc list
 set cmdheight=2
@@ -38,7 +63,6 @@ Plug 'scrooloose/syntastic'
 Plug 'szw/vim-ctrlspace'
 Plug 'tpope/vim-fugitive'
 Plug 'tmsvg/pear-tree'
-"9Plug 'ctrlpvim/ctrlp.vim' "explore others
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 
@@ -55,11 +79,9 @@ Plug 'AlessandroYorba/Sierra'
 Plug 'pangloss/vim-javascript' "is this necessary
 Plug 'mxw/vim-jsx'
 Plug 'HerringtonDarkholme/yats.vim'
-"Plug 'Shougo/deoplete.nvim'
 Plug 'Shougo/denite.nvim' "look up usage
 Plug 'scrooloose/nerdcommenter'
 Plug 'ap/vim-css-color'
-"Plug 'blueyed/vim-diminactive'
 Plug 'severin-lemaignan/vim-minimap'
 Plug 'jceb/vim-orgmode'
 Plug 'vim-scripts/utl.vim'
@@ -79,7 +101,6 @@ if exists("*GuiName") && GuiName() == 'nvim-qt'
 endif
 
 " Function MapToggle 
-" Allows remapping a key to toggling a bool option
 " http://vim.wikia.com/wiki/Quick_generic_option_toggling
 function MapToggle(key, opt)
   let cmd = ':set '.a:opt.'! \| set '.a:opt."?\<CR>"
@@ -103,7 +124,7 @@ endfunction
 
 " Commands
 command! -nargs=0 Sudow w !sudo tee % > /dev/null
-"command! -nargs=0 Format :call CocAction('format')
+command! -nargs=0 Format :call CocAction('format')
 
 let s:ag_secondary_options = ' --one-device --skip-vcs-ignores --smart-case '
 
@@ -116,14 +137,10 @@ command! -bang -nargs=* Ag
   \   <bang>0
   \ )
 
-" remaps
-let mapleader = "\<Space>"
-let maplocalleader = "\\"
 nnoremap , :
 nnoremap j gj
 nnoremap k gk
 nnoremap <silent> <esc> :noh<cr><esc>
-
 nnoremap <F3>  :NERDTreeToggle<CR>
 nnoremap <F4> :NERDTree<CR>
 nnoremap <F6> :NERDTreeFind<CR>
@@ -160,15 +177,12 @@ nmap <silent> <A-left> :BuffergatorMruCyclePrev<CR>
 nmap <silent> <A-right> :BuffergatorMruCycleNext<CR>
 
 " Fuzzy finding
-nnoremap <leader>a :Ag<CR>
 nnoremap <leader>r :Rg<CR>
 
 silent! nmap <C-p> :GFiles --exclude-standard --others --cached<CR>
 silent! nmap <leader>p :Buffers<CR>
 silent! nmap <C-l> :BLines<CR>
 silent! nmap <C-m> :Marks<CR>
-"let g:ctrlp_custom_ignore = 'node_modules\|^build\|^\.DS_Store\|^\.git\|^\.coffee'
-"let g:ctrlp_show_hidden = 1
 
 " cd root location into current buffer's dir
 nnoremap <leader>cd :lcd %:p:h<CR>:NERDTreeCWD<CR>:pwd<CR>
@@ -176,14 +190,14 @@ nnoremap <leader>cr :Rooter<CR>
 
 nnoremap <leader>gb :Gblame<CR>
 
-"" sessions
-" make
+" make sessions
 map <Leader>ss1 :mks! ~/.vimsessions/session1.vim<CR>
 map <Leader>ss2 :mks! ~/.vimsessions/session2.vim<CR>
 map <Leader>ss3 :mks! ~/.vimsessions/session3.vim<CR>
 map <Leader>ss4 :mks! ~/.vimsessions/session4.vim<CR>
 map <Leader>ss5 :mks! ~/.vimsessions/session5.vim<CR>
-" restore
+
+" restore sessions
 map <Leader>sr1 :so ~/.vimsessions/session1.vim<CR>
 map <Leader>sr2 :so ~/.vimsessions/session2.vim<CR>
 map <Leader>sr3 :so ~/.vimsessions/session3.vim<CR>
@@ -235,16 +249,6 @@ nmap <Leader>f <Plug>(easymotion-overwin-f)
 map <Leader>e <Plug>(easymotion-j)
 map <Leader>i <Plug>(easymotion-k)
 
-"""""neosnippet configuration 
-"let g:neosnippet#disable_runtime_snippets = { "_": 1, }
-"let g:neosnippet#enable_snipmate_compatibility = 1
-"let g:neosnippet#snippets_directory='~/.config/nvim/snippets/'
-"imap <C-s>     <Plug>(neosnippet_expand_or_jump)
-"smap <C-s>     <Plug>(neosnippet_expand_or_jump)
-"xmap <C-s>     <Plug>(neosnippet_expand_target)
-
-"let g:markdown_fenced_languages = ['html', 'vim', 'ts']
-
 " Rooter
 let g:rooter_manual_only = 1
 
@@ -259,11 +263,6 @@ let g:ale_sign_error = '●' " Less aggressive than the default '>>'
 let g:ale_sign_warning = '.'
 let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
 
-" For conceal markers.
-"if has('conceal')
-"  set conceallevel=2 concealcursor=niv
-"endif
-
 " Not for latex
 let g:tex_conceal = ""
 
@@ -275,10 +274,6 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 let NERDTreeChDirMode = 2
 let NERDTreeShowHidden = 1
 let NERDTreeWinPos = "right"
-
-" auto start deoplete 
-"call deoplete#enable()
-"let g:deoplete#enable_at_startup = 1
 
 " populate g:airline_symbols dictionary with powerline symbols
 let g:airline_powerline_fonts = 1
@@ -311,33 +306,9 @@ let g:airline_theme='gruvbox'
 " Terminal colors
 "set t_Co=16
 
-
 "solarized:
 "let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 "set background=dark " or light
 "colorscheme solarized
 "let g:airline_theme='solarized'
-
-" Quality of life settings
-set nowrap		" don't wrap lines
-syntax on		" syntax highlight on by default
-set number		" enable line numbers by default
-set autoindent    	" always set autoindenting on
-set linebreak       " break at linebreak if wrap is set
-set copyindent    	" copy the previous indentation on autoindenting
-set expandtab				" use spaces
-set shiftwidth=2	" auto indent space
-set tabstop=2		" tab space
-set smarttab		" insert tabs on start of line according to shiftwidth
-set shiftround    	" use multiple of shiftwidth when indenting with '<' and '>'
-set ignorecase	" case insensitive search
-set smartcase		" case insensitive search unless one uppercase char is used
-set incsearch     	" show search matches as you type
-set history=1000        " remember more commands and search history
-set undolevels=1000     " use many levels of undo
-set title               " change the terminal's title
-
-" backups are unnecessary with git
-set nobackup
-set noswapfile
 
