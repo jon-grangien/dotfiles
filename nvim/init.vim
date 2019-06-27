@@ -94,12 +94,6 @@ call plug#end()
 
 filetype plugin indent on    " required
 
-if exists("*GuiName") && GuiName() == 'nvim-qt'
-  GuiPopupmenu 0 
-  GuiTabline 0
-  GuiFont! Meslo\ LG\ M\ for\ Powerline:h10
-endif
-
 " Function MapToggle 
 " http://vim.wikia.com/wiki/Quick_generic_option_toggling
 function MapToggle(key, opt)
