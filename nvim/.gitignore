@@ -7,3 +7,5 @@ bundle/*
 !bundle/Vundle.vim
 
 plugs/*
+
+backup

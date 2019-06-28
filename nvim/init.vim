@@ -52,6 +52,8 @@ set shortmess+=c
 set signcolumn=yes
 let NVIM_COC_LOG_LEVEL = 'debug'
 
+set backupdir=.,$XDG_CONFIG_HOME/nvim/backup,$XDG_DATA_HOME/nvim/backup
+
 call plug#begin('~/.config/nvim/plugs')
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -200,7 +202,7 @@ map <Leader>sr5 :so ~/.vimsessions/session5.vim<CR>
 
 " COC
 nmap <leader>rn <Plug>(coc-rename)
-xmap <leader>cf <Plug>(coc-format-selected)
+vmap <leader>cf <Plug>(coc-format-selected)
 nmap <leader>cf <Plug>(coc-format-selected)
 nmap <leader>qf  <Plug>(coc-fix-current)
 imap <C-l> <Plug>(coc-snippets-expand)
