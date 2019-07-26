@@ -67,13 +67,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tmsvg/pear-tree'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
-
-if s:is_windows
-  Plug 'neoclide/coc.nvim', {'tag': '*', 'do': 'install.cmd'}
-else
-  Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
-endif
-
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'morhetz/gruvbox'
