@@ -268,6 +268,7 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 let NERDTreeChDirMode = 2
 let NERDTreeShowHidden = 1
 let NERDTreeWinPos = "right"
+let NERDSpaceDelims = 1
 
 " populate g:airline_symbols dictionary with powerline symbols
 let g:airline_powerline_fonts = 1
