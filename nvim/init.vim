@@ -155,6 +155,10 @@ nmap <M-n> h
 nmap <M-e> gj
 nmap <M-i> gk
 nmap <M-o> l
+xmap <M-n> h
+xmap <M-e> gj
+xmap <M-i> gk
+xmap <M-o> l
 
 " nav split panes
 nmap <silent> <C-up> :wincmd k<CR>
