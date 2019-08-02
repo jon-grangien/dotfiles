@@ -13,8 +13,8 @@ add Control = Control_L
 ! colmak mod dh (on top of colemak)
 keycode  28  =  b             B            dead_breve            asciitilde
 keycode  42  =  g             G            dead_ogonek           asciitilde
-keycode  43  =  k             K            dead_abovering        asciitilde
+keycode  43  =  m             M            dead_abovering        asciitilde
 keycode  55  =  d             D            dead_diaeresis        asciitilde
 keycode  56  =  v             V            oe                    OE
-keycode  57  =  m             M            dead_macron           asciitilde
+keycode  57  =  k             K            dead_macron           asciitilde
 keycode  58  =  h             H            dead_caron            asciitilde
