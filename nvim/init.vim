@@ -52,6 +52,9 @@ set shortmess+=c
 set signcolumn=yes
 let NVIM_COC_LOG_LEVEL = 'debug'
 
+" cool-ness settings
+set pumblend=15
+
 set backupdir=.,$XDG_CONFIG_HOME/nvim/backup,$XDG_DATA_HOME/nvim/backup
 
 call plug#begin('~/.config/nvim/plugs')
@@ -184,6 +187,7 @@ nnoremap <leader>cd :lcd %:p:h<CR>:NERDTreeCWD<CR>:pwd<CR>
 nnoremap <leader>cr :Rooter<CR>
 
 nnoremap <leader>gb :Gblame<CR>
+nnoremap <leader>gs :Gstatus<CR>
 
 " make sessions
 map <Leader>ss1 :mks! ~/.vimsessions/session1.vim<CR>
