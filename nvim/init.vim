@@ -204,7 +204,7 @@ map <Leader>sr4 :so ~/.vimsessions/session4.vim<CR>
 map <Leader>sr5 :so ~/.vimsessions/session5.vim<CR>
 
 " COC
-nmap <leader>rn <Plug>(coc-rename)
+nmap <leader>cn <Plug>(coc-rename)
 vmap <leader>cf <Plug>(coc-format-selected)
 nmap <leader>cf <Plug>(coc-format-selected)
 nmap <leader>qf  <Plug>(coc-fix-current)
