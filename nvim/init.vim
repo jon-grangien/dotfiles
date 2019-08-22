@@ -145,8 +145,8 @@ nmap <leader>l :bnext<CR>
 nmap <leader>h :bprevious<CR>
 nmap <leader>v :vs<CR>
 nmap <leader><leader> ``
-nmap <Tab> gt
-nmap <S-Tab> gT
+nmap <A-right> gt
+nmap <A-left> gT
 nmap <leader>so :so ~/dotfiles/nvim/init.vim<CR>
 nnoremap <silent> <M-a> :vertical resize +10<CR>
 nnoremap <silent> <M-r> :vertical resize -10<CR>
@@ -171,8 +171,8 @@ nmap <silent> <C-left> :wincmd h<CR>
 nmap <silent> <C-right> :wincmd l<CR>
 
 " nav buffers
-nmap <silent> <A-left> :BuffergatorMruCyclePrev<CR>
-nmap <silent> <A-right> :BuffergatorMruCycleNext<CR>
+nmap <silent> <Tab> :BuffergatorMruCyclePrev<CR>
+nmap <silent> <S-Tab> :BuffergatorMruCycleNext<CR>
 
 " Fuzzy finding
 nnoremap <leader>r :Rg<CR>
@@ -240,6 +240,18 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Search for selected text, forwards or backwards.
+vnoremap <silent> * :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy/<C-R><C-R>=substitute(
+  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
+vnoremap <silent> # :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy?<C-R><C-R>=substitute(
+  \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
 
 " easy motion
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
