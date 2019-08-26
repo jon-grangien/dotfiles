@@ -148,10 +148,10 @@ nmap <leader><leader> ``
 nmap <A-right> gt
 nmap <A-left> gT
 nmap <leader>so :so ~/dotfiles/nvim/init.vim<CR>
-nnoremap <silent> <M-a> :vertical resize +10<CR>
-nnoremap <silent> <M-r> :vertical resize -10<CR>
-nnoremap <silent> <M-s> :resize +5<CR>
-nnoremap <silent> <M-t> :resize -5<CR>
+nnoremap <silent> <C-l> :vertical resize +10<CR>
+nnoremap <silent> <C-h> :vertical resize -10<CR>
+nnoremap <silent> <C-j> :resize +5<CR>
+nnoremap <silent> <C-k> :resize -5<CR>
 MapToggle <F1> wrap
 
 " colemak movement on regular keyboard
@@ -179,7 +179,7 @@ nnoremap <leader>r :Rg<CR>
 
 silent! nmap <C-p> :GFiles --exclude-standard --others --cached<CR>
 silent! nmap <leader>p :Buffers<CR>
-silent! nmap <C-l> :BLines<CR>
+silent! nmap <leader>l> :BLines<CR>
 silent! nmap <C-m> :Marks<CR>
 
 " cd root location into current buffer's dir
