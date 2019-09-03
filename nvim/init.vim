@@ -24,6 +24,14 @@ filetype off                  " required
 set termguicolors
 set encoding=utf8
 
+" config
+" set expandtab
+" set smarttab
+set noexpandtab
+set tabstop=4
+set softtabstop=0
+set shiftwidth=4
+
 " Quality of life settings
 set nowrap
 syntax on
@@ -31,10 +39,6 @@ set number
 set autoindent
 set linebreak
 set copyindent
-set expandtab
-set shiftwidth=2
-set tabstop=2
-set smarttab
 set shiftround
 set ignorecase
 set smartcase
