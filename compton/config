@@ -1,6 +1,6 @@
 shadow = true;
 no-dnd-shadow = true;
-no-dock-shadow = false;
+no-dock-shadow = true;
 clear-shadow = true;
 respect-prop-shadow = true;
 shadow-radius = 0.5;
@@ -8,6 +8,8 @@ shadow-opacity = 0.2;
 shadow-offset-x = 0.5;
 shadow-offset-y = 0.5;
 shadow-exclude = [
+  "name = 'Polybar'",
+  "name = 'Polybar tray window'",
 	"_GTK_FRAME_EXTENTS@:c"
 ];
 
