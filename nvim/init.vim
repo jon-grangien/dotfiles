@@ -24,6 +24,14 @@ filetype off                  " required
 set termguicolors
 set encoding=utf8
 
+" config
+" set expandtab
+" set smarttab
+set noexpandtab
+set tabstop=4
+set softtabstop=0
+set shiftwidth=4
+
 " Quality of life settings
 set nowrap
 syntax on
@@ -31,10 +39,6 @@ set number
 set autoindent
 set linebreak
 set copyindent
-set expandtab
-set shiftwidth=2
-set tabstop=2
-set smarttab
 set shiftround
 set ignorecase
 set smartcase
@@ -179,7 +183,7 @@ nnoremap <leader>r :Rg<CR>
 
 silent! nmap <C-p> :GFiles --exclude-standard --others --cached<CR>
 silent! nmap <leader>p :Buffers<CR>
-silent! nmap <leader>l> :BLines<CR>
+silent! nmap <C-f> :BLines<CR>
 silent! nmap <C-m> :Marks<CR>
 
 " cd root location into current buffer's dir
@@ -210,10 +214,10 @@ nmap <leader>cf <Plug>(coc-format-selected)
 nmap <leader>qf  <Plug>(coc-fix-current)
 imap <C-l> <Plug>(coc-snippets-expand)
 
-nnoremap <leader>li  :<C-u>CocList diagnostics<cr>
-nnoremap <leader>o  :<C-u>CocList outline<cr>
+nnoremap <leader>cld :<C-u>CocList diagnostics<cr>
+nnoremap <leader>o   :<C-u>CocList outline<cr>
 nnoremap <leader>sy  :<C-u>CocList -I symbols<cr>
-nnoremap <leader>lr  :<C-u>CocListResume<CR>
+nnoremap <leader>cl  :<C-u>CocListResume<CR>
 
 "" Do default action for next item.
 "nnoremap <silent> <space>j  :<C-u>CocNext<CR>
@@ -286,6 +290,8 @@ let NERDTreeChDirMode = 2
 let NERDTreeShowHidden = 1
 let NERDTreeWinPos = "right"
 let NERDSpaceDelims = 1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
 
 " populate g:airline_symbols dictionary with powerline symbols
 let g:airline_powerline_fonts = 1
