@@ -61,6 +61,8 @@ set pumblend=15
 
 set backupdir=.,$XDG_CONFIG_HOME/nvim/backup,$XDG_DATA_HOME/nvim/backup
 
+let s:is_current_theme_dark = 1
+
 call plug#begin('~/.config/nvim/plugs')
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -99,12 +101,12 @@ filetype plugin indent on    " required
 
 " Function MapToggle 
 " http://vim.wikia.com/wiki/Quick_generic_option_toggling
-function MapToggle(key, opt)
+function! MapToggle(key, opt)
   let cmd = ':set '.a:opt.'! \| set '.a:opt."?\<CR>"
   exec 'nnoremap '.a:key.' '.cmd
   exec 'inoremap '.a:key." \<C-O>".cmd
 endfunction
-command -nargs=+ MapToggle call MapToggle(<f-args>)
+command! -nargs=+ MapToggle call MapToggle(<f-args>)
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -117,6 +119,21 @@ function! s:show_documentation()
   else
     call CocAction('doHover')
   endif
+endfunction
+
+function! ToggleLightDark()
+	if s:is_current_theme_dark == 1
+		set background=light
+		exec 'colorscheme Papercolor'
+		let g:airline_theme='papercolor'
+		let s:is_current_theme_dark = 0
+	else
+		set background=dark
+		let g:gruvbox_italic=1
+		exec 'colorscheme gruvbox'
+		let g:airline_theme='gruvbox'
+		let s:is_current_theme_dark = 1
+	endif
 endfunction
 
 " Commands
@@ -138,10 +155,12 @@ nnoremap , :
 nnoremap j gj
 nnoremap k gk
 nnoremap <silent> <esc> :noh<cr><esc>
+MapToggle <F1> wrap
 nnoremap <F3>  :NERDTreeToggle<CR>
 nnoremap <F4> :NERDTree<CR>
 nnoremap <F6> :NERDTreeFind<CR>
 nnoremap <F7> :NERDTreeVCS<CR>
+nmap <F9> :call ToggleLightDark()<CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>v gv<Esc>
@@ -156,7 +175,6 @@ nnoremap <silent> <C-l> :vertical resize +10<CR>
 nnoremap <silent> <C-h> :vertical resize -10<CR>
 nnoremap <silent> <C-j> :resize +5<CR>
 nnoremap <silent> <C-k> :resize -5<CR>
-MapToggle <F1> wrap
 
 " colemak movement on regular keyboard
 nmap <M-n> h
@@ -300,7 +318,7 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
 " Latex options
-let g:Tex_AutoFolding = 0
+let g:Tex_AutoFolding        = 0
 let g:Tex_FoldedSections     = ""
 let g:Tex_FoldedEnvironments = ""
 let g:Tex_FoldedMisc         = ""
@@ -319,7 +337,6 @@ set background=dark
 let g:gruvbox_italic=1
 colorscheme gruvbox
 let g:airline_theme='gruvbox'
-
 
 " Terminal colors
 "set t_Co=16
