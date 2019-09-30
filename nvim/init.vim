@@ -123,15 +123,15 @@ endfunction
 
 function! ToggleLightDark()
 	if s:is_current_theme_dark == 1
+		let g:airline_theme='papercolor'
 		set background=light
 		exec 'colorscheme Papercolor'
-		let g:airline_theme='papercolor'
 		let s:is_current_theme_dark = 0
 	else
+		let g:airline_theme='gruvbox'
 		set background=dark
 		let g:gruvbox_italic=1
 		exec 'colorscheme gruvbox'
-		let g:airline_theme='gruvbox'
 		let s:is_current_theme_dark = 1
 	endif
 endfunction
