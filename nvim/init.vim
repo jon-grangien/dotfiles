@@ -93,6 +93,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'jparise/vim-graphql'
 Plug 'w0rp/ale'
 Plug 'prettier/prettier'
+Plug 'mustache/vim-mustache-handlebars'
 call plug#end()
 
 filetype plugin indent on    " required
@@ -145,8 +146,6 @@ nnoremap <F7> :NERDTreeVCS<CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>v gv<Esc>
-nmap <leader>l :bnext<CR>
-nmap <leader>h :bprevious<CR>
 nmap <leader>v :vs<CR>
 nmap <leader><leader> ``
 nmap <A-right> gt
