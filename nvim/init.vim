@@ -70,7 +70,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 Plug 'airblade/vim-rooter'
-Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
 Plug 'szw/vim-ctrlspace'
 Plug 'tpope/vim-fugitive'
 Plug 'tmsvg/pear-tree'
@@ -79,10 +79,11 @@ Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'morhetz/gruvbox'
+" Plug 'morhetz/gruvbox'
+Plug 'gruvbox-community/gruvbox'
 Plug 'AlessandroYorba/Sierra'
 Plug 'pangloss/vim-javascript' "is this necessary
-Plug 'mxw/vim-jsx'
+" Plug 'mxw/vim-jsx'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'Shougo/denite.nvim' "look up usage
 Plug 'scrooloose/nerdcommenter'
@@ -93,9 +94,10 @@ Plug 'vim-scripts/utl.vim'
 Plug 'beyondmarc/glsl.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'jparise/vim-graphql'
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 Plug 'prettier/prettier'
 Plug 'mustache/vim-mustache-handlebars'
+Plug 'maxmellon/vim-jsx-pretty'
 call plug#end()
 
 filetype plugin indent on    " required
@@ -225,7 +227,7 @@ map <Leader>sr4 :so ~/.vimsessions/session4.vim<CR>
 map <Leader>sr5 :so ~/.vimsessions/session5.vim<CR>
 
 " COC
-nmap <leader>cn <Plug>(coc-rename)
+nmap <leader>crn <Plug>(coc-rename)
 vmap <leader>cf <Plug>(coc-format-selected)
 nmap <leader>cf <Plug>(coc-format-selected)
 nmap <leader>qf  <Plug>(coc-fix-current)
@@ -285,20 +287,22 @@ map <Leader>i <Plug>(easymotion-k)
 let g:rooter_manual_only = 1
 
 " ALE config
-let g:ale_fixers = {'typescript': ['tslint'], 'javascript': ['prettier', 'eslint']}
-let g:ale_linters = {'typescript': ['tslint'], 'javascript': ['eslint']}
+" let g:ale_fixers = {'typescript': ['tslint'], 'javascript': ['prettier', 'eslint']}
+" let g:ale_linters = {'typescript': ['tslint'], 'javascript': ['eslint']}
 " let g:ale_completion_enabled=1
-let g:airline#extensions#ale#enabled=1
+" let g:airline#extensions#ale#enabled=1
 let g:airline#extensions#coc=1
 "let g:ale_fix_on_save=1
-let g:ale_sign_error = '●' " Less aggressive than the default '>>'
-let g:ale_sign_warning = '.'
-let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
+" let g:ale_sign_error = '•' " Less aggressive than the default '>>'
+" let g:ale_sign_warning = '•'
+" let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
+" highlight clear ALEErrorSign
+" highlight clear ALEWarningSign
 
 " git gutter
 let g:gitgutter_override_sign_column_highlight = 1
-highlight SignColumn guibg=bg
-highlight SignColumn ctermbg=bg
+" highlight SignColumn guibg=bg
+" highlight SignColumn ctermbg=bg
 
 " Not for latex
 let g:tex_conceal = ""
