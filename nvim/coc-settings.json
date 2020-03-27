@@ -1,4 +1,6 @@
 {
 	"diagnostic.signOffset": 9999999,
-	"git.enableGutters": false
+	"git.enableGutters": true,
+
+	// "coc.preferences.formatOnSaveFiletypes": ["typescript", "typescriptreact", "json"]
 }

@@ -48,6 +48,8 @@ set undolevels=1000
 set title
 set nobackup
 set noswapfile
+set splitright
+set splitbelow
 
 " good for coc list
 set cmdheight=2
@@ -98,6 +100,10 @@ Plug 'jparise/vim-graphql'
 Plug 'prettier/prettier'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'maxmellon/vim-jsx-pretty'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'psliwka/vim-smoothie'
+Plug 'gregsexton/MatchTag'
+Plug 'unblevable/quick-scope' 
 call plug#end()
 
 filetype plugin indent on    " required
@@ -139,6 +145,28 @@ function! ToggleLightDark()
 	endif
 endfunction
 
+function! FloatingFZF()
+
+  " creates a scratch, unlisted, new, empty, unnamed buffer
+  let buf = nvim_create_buf(v:false, v:true)
+
+  let height = float2nr(&lines * 0.75)
+  let width = float2nr(&columns * 0.6)
+
+  let horizontal_position = float2nr((&columns - width) / 2) 
+  let vertical_position = float2nr((&lines - height) / 2)
+
+  let opts = {
+        \ 'relative': 'editor',
+        \ 'row': vertical_position,
+        \ 'col': horizontal_position,
+        \ 'width': width,
+        \ 'height': height
+        \ }
+
+  call nvim_open_win(buf, v:true, opts)
+endfunction
+
 " Commands
 command! -nargs=0 Sudow w !sudo tee % > /dev/null
 command! -nargs=0 Format :call CocAction('format')
@@ -176,6 +204,7 @@ nnoremap <silent> <C-l> :vertical resize +10<CR>
 nnoremap <silent> <C-h> :vertical resize -10<CR>
 nnoremap <silent> <C-j> :resize +5<CR>
 nnoremap <silent> <C-k> :resize -5<CR>
+nnoremap <C-q> :q<CR>
 
 " colemak movement on regular keyboard
 nmap <M-n> h
@@ -233,6 +262,9 @@ nmap <leader>cf <Plug>(coc-format-selected)
 nmap <leader>qf  <Plug>(coc-fix-current)
 imap <C-l> <Plug>(coc-snippets-expand)
 
+nmap <leader>cto :CocCommand tsserver.organizeImports<CR>
+nmap <leader>cp :CocCommand prettier.formatFile<CR>
+
 nnoremap <leader>cld :<C-u>CocList diagnostics<cr>
 nnoremap <leader>o   :<C-u>CocList outline<cr>
 nnoremap <leader>sy  :<C-u>CocList -I symbols<cr>
@@ -251,6 +283,8 @@ nnoremap <leader>do :call <SID>show_documentation()<CR>
 nnoremap <leader>dd <Plug>(coc-definition)
 nnoremap <leader>dr <Plug>(coc-references)
 nnoremap <leader>di <Plug>(coc-implementation)
+
+autocmd FileType json syntax match Comment +\/\/.\+$+
 
 " Use tab for trigger completion with characters ahead and navigate.
 inoremap <silent><expr> <TAB>
@@ -279,6 +313,7 @@ vnoremap <silent> # :<C-U>
 " easy motion
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 let g:EasyMotion_smartcase = 1
+let g:EasyMotion_startofline = 0 " Keep cursor column 
 nmap <Leader>f <Plug>(easymotion-overwin-f)
 map <Leader>e <Plug>(easymotion-j)
 map <Leader>i <Plug>(easymotion-k)
@@ -308,6 +343,13 @@ let g:gitgutter_override_sign_column_highlight = 1
 let g:tex_conceal = ""
 
 set pastetoggle=<F2>
+
+" fzf options
+let g:fzf_commits_log_options = '--graph --color=always'
+" let g:fzf_layout = { 'window': 'enew' }
+" let g:fzf_layout = { 'window': '-tabnew' }
+let $FZF_DEFAULT_OPTS='--layout=reverse'
+let g:fzf_layout = { 'window': 'call FloatingFZF()' }
 
 " NERDTree settings
 autocmd StdinReadPre * let s:std_in=1
@@ -346,6 +388,12 @@ let g:gruvbox_italic=1
 colorscheme gruvbox
 let g:airline_theme='gruvbox'
 
+" smoothie
+let g:smoothie_update_interval = 40
+
+" quick scope
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
 " Terminal colors
 "set t_Co=16
 
@@ -355,3 +403,6 @@ let g:airline_theme='gruvbox'
 "colorscheme solarized
 "let g:airline_theme='solarized'
 
+if s:is_windows
+	cd C:\Users\jgn\code
+endif
