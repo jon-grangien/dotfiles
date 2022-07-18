@@ -1,17 +1,20 @@
 # Dotfiles and personal config
-Mainly arch based system
+What a mess
 
-## Setup
-Symlink everything  
-root dotfiles in ~/    
-Pretty much everything else in ~/.config/ on arch   
+## Setup unix
+Symlink everything to ~/ or ~/.config/  
 
-## Commands
-Soft symlink:   
-`ln -rs targetFile newTargetDir`
+```bash
+cd dotfiles
+ln -s $(pwd)/program/.example_dotfile ~/.config/program/.example_dotfile
+```
 
 Global git config:  
 `git config --global core.excludesfile '~/dotfiles/git/.gitignore'`
+
+## Some commands on linux
+Soft symlink linux:   
+`ln -rs targetFile newTargetDir`
 
 Xkb conf file:   
 `sudo cp 00-keyboard.conf /etc/X11/xorg.conf.d/00-keyboard.conf` (careful)
