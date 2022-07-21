@@ -204,7 +204,6 @@ nnoremap <silent> <C-l> :vertical resize +10<CR>
 nnoremap <silent> <C-h> :vertical resize -10<CR>
 nnoremap <silent> <C-j> :resize +5<CR>
 nnoremap <silent> <C-k> :resize -5<CR>
-nnoremap <C-q> :q<CR>
 
 " colemak movement on regular keyboard
 nmap <M-n> h
@@ -217,10 +216,10 @@ xmap <M-i> gk
 xmap <M-o> l
 
 " nav split panes
-nmap <silent> <C-up> :wincmd k<CR>
-nmap <silent> <C-down> :wincmd j<CR>
-nmap <silent> <C-left> :wincmd h<CR>
-nmap <silent> <C-right> :wincmd l<CR>
+nmap <silent> <C-k> :wincmd k<CR>
+nmap <silent> <C-j> :wincmd j<CR>
+nmap <silent> <C-h> :wincmd h<CR>
+nmap <silent> <C-l> :wincmd l<CR>
 
 " nav buffers
 nmap <silent> <Tab> :BuffergatorMruCyclePrev<CR>
