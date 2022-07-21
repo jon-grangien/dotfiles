@@ -101,7 +101,6 @@ Plug 'prettier/prettier'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'psliwka/vim-smoothie'
 Plug 'gregsexton/MatchTag'
 Plug 'unblevable/quick-scope' 
 call plug#end()
@@ -200,10 +199,10 @@ nmap <leader><leader> ``
 nmap <A-right> gt
 nmap <A-left> gT
 nmap <leader>so :so ~/dotfiles/nvim/init.vim<CR>
-nnoremap <silent> <C-l> :vertical resize +10<CR>
-nnoremap <silent> <C-h> :vertical resize -10<CR>
-nnoremap <silent> <C-j> :resize +5<CR>
-nnoremap <silent> <C-k> :resize -5<CR>
+nnoremap <silent> <leader>l :vertical resize +10<CR>
+nnoremap <silent> <leader>h :vertical resize -10<CR>
+nnoremap <silent> <leader>j :resize +5<CR>
+nnoremap <silent> <leader>k :resize -5<CR>
 
 " colemak movement on regular keyboard
 nmap <M-n> h
