@@ -172,6 +172,9 @@ command! -nargs=0 Format :call CocAction('format')
 
 let s:ag_secondary_options = ' --one-device --skip-vcs-ignores --smart-case '
 
+command! -bang -nargs=* RG call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
+" nnoremap <C-q> :RG<cr>
+
 command! -bang -nargs=* Ag
   \ call fzf#vim#ag(
   \   <q-args>,
@@ -186,6 +189,7 @@ nnoremap j gj
 nnoremap k gk
 nnoremap <silent> <esc> :noh<cr><esc>
 MapToggle <F1> wrap
+MapToggle <F2> relativenumber
 nnoremap <F3>  :NERDTreeToggle<CR>
 nnoremap <F4> :NERDTree<CR>
 nnoremap <F6> :NERDTreeFind<CR>
@@ -221,8 +225,8 @@ nmap <silent> <C-h> :wincmd h<CR>
 nmap <silent> <C-l> :wincmd l<CR>
 
 " nav buffers
-nmap <silent> <Tab> :BuffergatorMruCyclePrev<CR>
-nmap <silent> <S-Tab> :BuffergatorMruCycleNext<CR>
+" nmap <silent> <Tab> :BuffergatorMruCyclePrev<CR>
+" nmap <silent> <S-Tab> :BuffergatorMruCycleNext<CR>
 
 " Fuzzy finding
 nnoremap <leader>r :Rg<CR>
@@ -285,16 +289,19 @@ nnoremap <leader>di <Plug>(coc-implementation)
 autocmd FileType json syntax match Comment +\/\/.\+$+
 
 " Use tab for trigger completion with characters ahead and navigate.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" inoremap <silent><expr> <TAB>
+      " \ pumvisible() ? "\<C-n>" :
+      " \ <SID>check_back_space() ? "\<TAB>" :
+      " \ coc#refresh()
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-inoremap <silent><expr> <c-space> coc#refresh()
+" inoremap <silent><expr> <c-space> coc#refresh()
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-y>"
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
 
 " Search for selected text, forwards or backwards.
 vnoremap <silent> * :<C-U>
