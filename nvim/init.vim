@@ -225,8 +225,8 @@ nmap <silent> <C-h> :wincmd h<CR>
 nmap <silent> <C-l> :wincmd l<CR>
 
 " nav buffers
-" nmap <silent> <Tab> :BuffergatorMruCyclePrev<CR>
-" nmap <silent> <S-Tab> :BuffergatorMruCycleNext<CR>
+nmap <silent> <Tab> :BuffergatorMruCyclePrev<CR>
+nmap <silent> <S-Tab> :BuffergatorMruCycleNext<CR>
 
 " Fuzzy finding
 nnoremap <leader>r :Rg<CR>
