@@ -146,7 +146,7 @@ alias timehistory="fc -li 100"
 alias genpass="apg -a0 -m 12 -s"
 alias dotnet64="/usr/local/share/dotnet/x64/dotnet"
 alias dotnet6="~/.dotnet/dotnet"
-alias gch="git checkout $(git branch -a | fzf| tr -d '[:space:]')"
+alias gch="git branch -a --format '%(refname:short)' | sed 's~origin/~~' | sort | uniq | fzf | xargs git checkout;"
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
