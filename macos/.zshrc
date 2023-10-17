@@ -83,6 +83,7 @@ plugins=(git)
 # export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 # PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
+export PATH="$PATH:/Users/jonathangrangien/.dotnet/tools"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -113,6 +114,21 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  
 
+# fzf
+FZF_IGNORES_ARGUMENTS="-g '!.git/*'"
+export FZF_DEFAULT_COMMAND="rg --files --no-messages --smart-case --follow --hidden $FZF_IGNORES_ARGUMENTS"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# functions
+unalias cdg 2> /dev/null
+cdg() {
+   local dest_dir=$(cdscuts_glob_echo | fzf )
+   if [[ $dest_dir != '' ]]; then
+      cd "$dest_dir"
+   fi
+}
+export -f cdg > /dev/null
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -122,14 +138,19 @@ export NVM_DIR="$HOME/.nvm"
 # For a full list of active aliases, run `alias`.
 alias n="nvim"
 alias c="clear"
+alias cls="clear; printf '\e[3J'"
 alias l="ls -lhA"
 alias p="pwd"
 alias zshconf="nvim ~/dotfiles/.zshrc"
 alias timehistory="fc -li 100"
 alias genpass="apg -a0 -m 12 -s"
 alias dotnet64="/usr/local/share/dotnet/x64/dotnet"
+alias dotnet6="~/.dotnet/dotnet"
+alias gch="git checkout $(git branch -a | fzf| tr -d '[:space:]')"
+
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# Source fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
