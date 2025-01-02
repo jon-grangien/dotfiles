@@ -1,6 +1,10 @@
 {
-	"diagnostic.signOffset": 9999999,
-	"git.enableGutters": true,
-
-	// "coc.preferences.formatOnSaveFiletypes": ["typescript", "typescriptreact", "json"]
+  "coc.preferences.formatOnSaveFiletypes": [
+    "typescript",
+    "typescriptreact",
+    "json",
+    "vue"
+  ],
+  "volar.enable": true,
+  "snippets.ultisnips.pythonPrompt": false
 }

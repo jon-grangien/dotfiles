@@ -36,6 +36,7 @@ set shiftwidth=4
 set nowrap
 syntax on
 set number
+set relativenumber
 set autoindent
 set linebreak
 set copyindent
@@ -78,7 +79,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tmsvg/pear-tree'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'NLKNguyen/papercolor-theme'
 " Plug 'morhetz/gruvbox'
@@ -103,7 +103,26 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'gregsexton/MatchTag'
 Plug 'unblevable/quick-scope' 
+Plug 'posva/vim-vue' 
+
+" Plug 'nvim-lua/plenary.nvim'
+" Plug 'sindrets/diffview.nvim'
+" Plug 'ibhagwan/fzf-lua'
+" Plug 'NeogitOrg/neogit', {'config': 'true'}
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
+
+" lua require('neogit').setup()
+" lua require('diffview').setup()
+
+let g:coc_global_extensions=['@yaegassy/coc-volar@0.35.0', '@yaegassy/coc-tailwindcss3', 'coc-eslint', 'coc-json', 'coc-prettier', 'coc-tsserver', 'coc-csharp-ls']
+
+" vue plugin settings
+" vim-vue slow down fix
+let g:vue_pre_processors = []
+" coc-volar fix completion list disappearing when typing -
+autocmd Filetype vue setlocal iskeyword+=-
 
 filetype plugin indent on    " required
 
@@ -179,8 +198,8 @@ command! -bang -nargs=* Ag
   \ call fzf#vim#ag(
   \   <q-args>,
   \   s:ag_secondary_options,
-  \  <bang>0 ? fzf#vim#with_preview('up:60%')
-  \        : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \  <bang>0 ? fzf#vim#with_preview('up:99%')
+  \        : fzf#vim#with_preview('right:0:hidden', '?'),
   \   <bang>0
   \ )
 
@@ -203,6 +222,7 @@ nmap <leader><leader> ``
 nmap <A-right> gt
 nmap <A-left> gT
 nmap <leader>so :so ~/dotfiles/nvim/init.vim<CR>
+
 nnoremap <silent> <leader>l :vertical resize +10<CR>
 nnoremap <silent> <leader>h :vertical resize -10<CR>
 nnoremap <silent> <leader>j :resize +5<CR>
@@ -229,7 +249,7 @@ nmap <silent> <Tab> :BuffergatorMruCyclePrev<CR>
 nmap <silent> <S-Tab> :BuffergatorMruCycleNext<CR>
 
 " Fuzzy finding
-nnoremap <leader>r :Rg<CR>
+nnoremap <leader>s :Rg<CR>
 
 silent! nmap <C-p> :GFiles --exclude-standard --others --cached<CR>
 silent! nmap <leader>p :Buffers<CR>
@@ -259,9 +279,9 @@ map <Leader>sr5 :so ~/.vimsessions/session5.vim<CR>
 
 " COC
 nmap <leader>crn <Plug>(coc-rename)
+nmap <leader>cr <Plug>(coc-restart)
 vmap <leader>cf <Plug>(coc-format-selected)
 nmap <leader>cf <Plug>(coc-format-selected)
-nmap <leader>qf  <Plug>(coc-fix-current)
 imap <C-l> <Plug>(coc-snippets-expand)
 
 nmap <leader>cto :CocCommand tsserver.organizeImports<CR>
@@ -271,6 +291,15 @@ nnoremap <leader>cld :<C-u>CocList diagnostics<cr>
 nnoremap <leader>o   :<C-u>CocList outline<cr>
 nnoremap <leader>sy  :<C-u>CocList -I symbols<cr>
 nnoremap <leader>cl  :<C-u>CocListResume<CR>
+
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>ac  <Plug>(coc-codeaction-cursor)
+nmap <leader>as  <Plug>(coc-codeaction-source)
+nmap <leader>qf  <Plug>(coc-fix-current)
+nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)
+xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
+nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
 
 "" Do default action for next item.
 "nnoremap <silent> <space>j  :<C-u>CocNext<CR>
@@ -285,6 +314,7 @@ nnoremap <leader>do :call <SID>show_documentation()<CR>
 nnoremap <leader>dd <Plug>(coc-definition)
 nnoremap <leader>dr <Plug>(coc-references)
 nnoremap <leader>di <Plug>(coc-implementation)
+inoremap <silent><expr> <C-s> coc#refresh()
 
 autocmd FileType json syntax match Comment +\/\/.\+$+
 
@@ -300,7 +330,7 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 " Coc only does snippet and additional edit on confirm.
 " inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-y>"
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 
 " Search for selected text, forwards or backwards.
@@ -356,9 +386,22 @@ let g:fzf_commits_log_options = '--graph --color=always'
 let $FZF_DEFAULT_OPTS='--layout=reverse'
 let g:fzf_layout = { 'window': 'call FloatingFZF()' }
 
+"  Build a quickfix list when multiple files are selected
+"function! s:build_quickfix_list(lines)
+"  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+"  copen
+"  cc
+"endfunction
+"
+"let g:fzf_action = {
+"  \ 'ctrl-x': function('s:build_quickfix_list'),
+"  \ 'ctrl-t': 'tab split',
+"  \ 'ctrl-h': 'split',
+"  \ 'ctrl-v': 'vsplit' }
+
 " NERDTree settings
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 let NERDTreeChDirMode = 2
 let NERDTreeShowHidden = 1
 let NERDTreeWinPos = "right"
