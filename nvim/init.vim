@@ -57,7 +57,7 @@ set cmdheight=2
 set updatetime=300
 set shortmess+=c
 set signcolumn=yes
-let NVIM_COC_LOG_LEVEL = 'debug'
+" let NVIM_COC_LOG_LEVEL = 'debug'
 
 " cool-ness settings
 set pumblend=15
@@ -84,39 +84,104 @@ Plug 'NLKNguyen/papercolor-theme'
 " Plug 'morhetz/gruvbox'
 Plug 'gruvbox-community/gruvbox'
 Plug 'AlessandroYorba/Sierra'
-Plug 'pangloss/vim-javascript' "is this necessary
+" Plug 'pangloss/vim-javascript' "is this necessary
 " Plug 'mxw/vim-jsx'
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'Shougo/denite.nvim' "look up usage
+" Plug 'HerringtonDarkholme/yats.vim'
+" Plug 'Shougo/denite.nvim' "look up usage
 Plug 'scrooloose/nerdcommenter'
 Plug 'ap/vim-css-color'
 Plug 'severin-lemaignan/vim-minimap'
 Plug 'jceb/vim-orgmode'
 Plug 'vim-scripts/utl.vim'
-Plug 'beyondmarc/glsl.vim'
+" Plug 'beyondmarc/glsl.vim'
 Plug 'easymotion/vim-easymotion'
-Plug 'jparise/vim-graphql'
+" Plug 'jparise/vim-graphql'
 " Plug 'w0rp/ale'
 Plug 'prettier/prettier'
 Plug 'mustache/vim-mustache-handlebars'
-Plug 'maxmellon/vim-jsx-pretty'
+" Plug 'maxmellon/vim-jsx-pretty'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'gregsexton/MatchTag'
 Plug 'unblevable/quick-scope' 
 Plug 'posva/vim-vue' 
+
+" LSP
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp'
 
 " Plug 'nvim-lua/plenary.nvim'
 " Plug 'sindrets/diffview.nvim'
 " Plug 'ibhagwan/fzf-lua'
 " Plug 'NeogitOrg/neogit', {'config': 'true'}
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
+
+lua <<EOF
+local lspconfig_defaults = require('lspconfig').util.default_config
+lspconfig_defaults.capabilities = vim.tbl_deep_extend(
+  'force',
+  lspconfig_defaults.capabilities,
+  require('cmp_nvim_lsp').default_capabilities()
+)
+
+-- This is where you enable features that only work
+-- if there is a language server active in the file
+vim.api.nvim_create_autocmd('LspAttach', {
+  desc = 'LSP actions',
+  callback = function(event)
+    local opts = {buffer = event.buf}
+
+    vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+    vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
+    vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
+    vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
+    vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
+    vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
+    vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
+    vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
+    vim.keymap.set({'n', 'x'}, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
+    vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+    vim.keymap.set('n', 'ge', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+  end,
+})
+
+require('lspconfig').vimls.setup({})
+require('lspconfig').ts_ls.setup({})
+require('lspconfig').tailwindcss.setup({})
+
+local cmp = require('cmp')
+
+cmp.setup({
+  sources = {
+    {name = 'nvim_lsp'},
+  },
+  mapping = cmp.mapping.preset.insert({
+    -- `Enter` key to confirm completion
+    ['<CR>'] = cmp.mapping.confirm({select = false}),
+
+    -- Trigger completion menu
+    ['<C-i>'] = cmp.mapping.complete(),
+
+    -- Scroll up and down in the completion documentation
+    ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-d>'] = cmp.mapping.scroll_docs(4),
+  }),
+  snippet = {
+    expand = function(args)
+      -- You need Neovim v0.10 to use vim.snippet
+      vim.snippet.expand(args.body)
+    end,
+  },
+  mapping = cmp.mapping.preset.insert({}),
+})
+EOF
 
 " lua require('neogit').setup()
 " lua require('diffview').setup()
 
-let g:coc_global_extensions=['@yaegassy/coc-volar@0.35.0', '@yaegassy/coc-tailwindcss3', 'coc-eslint', 'coc-json', 'coc-prettier', 'coc-tsserver', 'coc-csharp-ls']
+" let g:coc_global_extensions=['@yaegassy/coc-volar@0.35.0', '@yaegassy/coc-tailwindcss3', 'coc-eslint', 'coc-json', 'coc-prettier', 'coc-tsserver', 'coc-csharp-ls']
 
 " vue plugin settings
 " vim-vue slow down fix
@@ -140,13 +205,13 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
+"function! s:show_documentation()
+"  if (index(['vim','help'], &filetype) >= 0)
+"    execute 'h '.expand('<cword>')
+"  else
+"    call CocAction('doHover')
+"  endif
+"endfunction
 
 function! ToggleLightDark()
 	if s:is_current_theme_dark == 1
@@ -278,28 +343,28 @@ map <Leader>sr4 :so ~/.vimsessions/session4.vim<CR>
 map <Leader>sr5 :so ~/.vimsessions/session5.vim<CR>
 
 " COC
-nmap <leader>crn <Plug>(coc-rename)
-nmap <leader>cr <Plug>(coc-restart)
-vmap <leader>cf <Plug>(coc-format-selected)
-nmap <leader>cf <Plug>(coc-format-selected)
-imap <C-l> <Plug>(coc-snippets-expand)
+" nmap <leader>crn <Plug>(coc-rename)
+" nmap <leader>cr <Plug>(coc-restart)
+" vmap <leader>cf <Plug>(coc-format-selected)
+" nmap <leader>cf <Plug>(coc-format-selected)
+" imap <C-l> <Plug>(coc-snippets-expand)
 
-nmap <leader>cto :CocCommand tsserver.organizeImports<CR>
-nmap <leader>cp :CocCommand prettier.formatFile<CR>
+" nmap <leader>cto :CocCommand tsserver.organizeImports<CR>
+" nmap <leader>cp :CocCommand prettier.formatFile<CR>
 
-nnoremap <leader>cld :<C-u>CocList diagnostics<cr>
-nnoremap <leader>o   :<C-u>CocList outline<cr>
-nnoremap <leader>sy  :<C-u>CocList -I symbols<cr>
-nnoremap <leader>cl  :<C-u>CocListResume<CR>
+" nnoremap <leader>cld :<C-u>CocList diagnostics<cr>
+" nnoremap <leader>o   :<C-u>CocList outline<cr>
+" nnoremap <leader>sy  :<C-u>CocList -I symbols<cr>
+" nnoremap <leader>cl  :<C-u>CocListResume<CR>
 
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>ac  <Plug>(coc-codeaction-cursor)
-nmap <leader>as  <Plug>(coc-codeaction-source)
-nmap <leader>qf  <Plug>(coc-fix-current)
-nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)
-xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
-nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
+" xmap <leader>a  <Plug>(coc-codeaction-selected)
+" nmap <leader>a  <Plug>(coc-codeaction-selected)
+" nmap <leader>ac  <Plug>(coc-codeaction-cursor)
+" nmap <leader>as  <Plug>(coc-codeaction-source)
+" nmap <leader>qf  <Plug>(coc-fix-current)
+" nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)
+" xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
+" nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
 
 "" Do default action for next item.
 "nnoremap <silent> <space>j  :<C-u>CocNext<CR>
@@ -310,11 +375,11 @@ nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
 "" Show commands
 "nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 
-nnoremap <leader>do :call <SID>show_documentation()<CR>
-nnoremap <leader>dd <Plug>(coc-definition)
-nnoremap <leader>dr <Plug>(coc-references)
-nnoremap <leader>di <Plug>(coc-implementation)
-inoremap <silent><expr> <C-s> coc#refresh()
+" nnoremap <leader>do :call <SID>show_documentation()<CR>
+" nnoremap <leader>dd <Plug>(coc-definition)
+" nnoremap <leader>dr <Plug>(coc-references)
+" nnoremap <leader>di <Plug>(coc-implementation)
+" inoremap <silent><expr> <C-s> coc#refresh()
 
 autocmd FileType json syntax match Comment +\/\/.\+$+
 
@@ -377,7 +442,7 @@ let g:gitgutter_override_sign_column_highlight = 1
 " Not for latex
 let g:tex_conceal = ""
 
-set pastetoggle=<F2>
+" set pastetoggle=<F2>
 
 " fzf options
 let g:fzf_commits_log_options = '--graph --color=always'
