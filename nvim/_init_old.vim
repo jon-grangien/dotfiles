@@ -67,49 +67,49 @@ set backupdir=.,$XDG_CONFIG_HOME/nvim/backup,$XDG_DATA_HOME/nvim/backup
 let s:is_current_theme_dark = 1
 
 call plug#begin('~/.config/nvim/plugs')
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'airblade/vim-gitgutter'
-Plug 'airblade/vim-rooter'
+"Plug 'scrooloose/nerdtree'
+"Plug 'Xuyuanp/nerdtree-git-plugin'
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
+"Plug 'airblade/vim-gitgutter'
+"Plug 'airblade/vim-rooter'
+"Plug 'szw/vim-ctrlspace'
+"Plug 'tpope/vim-fugitive'
+"Plug 'tmsvg/pear-tree'
+"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+"Plug 'junegunn/fzf.vim'
+"Plug 'jeetsukumaran/vim-buffergator'
+"Plug 'NLKNguyen/papercolor-theme'
+"Plug 'gruvbox-community/gruvbox'
+"Plug 'AlessandroYorba/Sierra'
+"Plug 'scrooloose/nerdcommenter'
+"Plug 'ap/vim-css-color'
+"Plug 'severin-lemaignan/vim-minimap'
+"Plug 'jceb/vim-orgmode'
+"Plug 'vim-scripts/utl.vim'
+"Plug 'easymotion/vim-easymotion'
+"Plug 'prettier/prettier'
+"Plug 'mustache/vim-mustache-handlebars'
+"Plug 'ludovicchabant/vim-gutentags'
+"Plug 'gregsexton/MatchTag'
+"Plug 'unblevable/quick-scope' 
+"Plug 'posva/vim-vue' 
+"
+"Plug 'neovim/nvim-lspconfig'
+"Plug 'hrsh7th/nvim-cmp'
+"Plug 'hrsh7th/cmp-nvim-lsp'
+
 " Plug 'scrooloose/syntastic'
-Plug 'szw/vim-ctrlspace'
-Plug 'tpope/vim-fugitive'
-Plug 'tmsvg/pear-tree'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-Plug 'junegunn/fzf.vim'
-Plug 'jeetsukumaran/vim-buffergator'
-Plug 'NLKNguyen/papercolor-theme'
 " Plug 'morhetz/gruvbox'
-Plug 'gruvbox-community/gruvbox'
-Plug 'AlessandroYorba/Sierra'
 " Plug 'pangloss/vim-javascript' "is this necessary
 " Plug 'mxw/vim-jsx'
 " Plug 'HerringtonDarkholme/yats.vim'
 " Plug 'Shougo/denite.nvim' "look up usage
-Plug 'scrooloose/nerdcommenter'
-Plug 'ap/vim-css-color'
-Plug 'severin-lemaignan/vim-minimap'
-Plug 'jceb/vim-orgmode'
-Plug 'vim-scripts/utl.vim'
 " Plug 'beyondmarc/glsl.vim'
-Plug 'easymotion/vim-easymotion'
 " Plug 'jparise/vim-graphql'
 " Plug 'w0rp/ale'
-Plug 'prettier/prettier'
-Plug 'mustache/vim-mustache-handlebars'
 " Plug 'maxmellon/vim-jsx-pretty'
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'gregsexton/MatchTag'
-Plug 'unblevable/quick-scope' 
-Plug 'posva/vim-vue' 
-
-" LSP
-Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/cmp-nvim-lsp'
-
+"
 " Plug 'nvim-lua/plenary.nvim'
 " Plug 'sindrets/diffview.nvim'
 " Plug 'ibhagwan/fzf-lua'
@@ -150,6 +150,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 require('lspconfig').vimls.setup({})
 require('lspconfig').ts_ls.setup({})
 require('lspconfig').tailwindcss.setup({})
+require('lspconfig').lua_ls.setup({})
 
 local cmp = require('cmp')
 

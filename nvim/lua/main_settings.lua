@@ -1,0 +1,16 @@
+vim.g.mapleader = ' '
+vim.g.maplocalleader = '\\'
+vim.opt.hidden = true
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+vim.opt.termguicolors = true
+vim.o.expandtab = false
+vim.opt.shiftwidth = 2
+vim.wo.wrap = false
+vim.opt.cursorline = true
+vim.opt.ignorecase = true
+vim.opt.incsearch = true
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.signcolumn = 'yes'
+vim.opt.list = true
