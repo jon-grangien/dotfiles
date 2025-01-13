@@ -124,6 +124,33 @@ require('lazy').setup({
       'MunifTanjim/nui.nvim',
     },
   },
+  {
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
+    config = function()
+      local configs = require('nvim-treesitter.configs')
+
+      configs.setup({
+        ensure_installed = {
+          'lua',
+          'vim',
+          'vimdoc',
+          'bash',
+          'html',
+          'javascript',
+          'gitignore',
+          'scss',
+          'typescript',
+          'tsx',
+          'vue',
+        },
+        auto_install = true,
+        sync_install = false,
+        highlight = { enable = true },
+        indent = { enable = true },
+      })
+    end,
+  },
 })
 
 require('lsp_config')
