@@ -1,7 +1,7 @@
-vim.keymap.set('n', '<F3>', ':NERDTreeToggle<cr>', { noremap = true })
-vim.keymap.set('n', '<F4>', ':NERDTree<cr>', { noremap = true })
-vim.keymap.set('n', '<F6>', ':NERDTreeFind<cr>', { noremap = true })
-vim.keymap.set('n', '<F7>', ':NERDTreeVCS<cr>', { noremap = true })
+vim.keymap.set('n', '<F3>', ':Neotree right toggle reveal<cr>', { noremap = true })
+vim.keymap.set('n', '<F4>', ':Neotree right toggle<cr>', { noremap = true })
+vim.keymap.set('n', '<F6>', ':Neotree left toggle reveal<cr>', { noremap = true })
+vim.keymap.set('n', '<F7>', ':Neotree float toggle git_status<cr>', { noremap = true })
 
 vim.keymap.set('n', '<Tab>', ':BuffergatorMruCyclePrev<cr>', { silent = true })
 vim.keymap.set('n', '<S-Tab>', ':BuffergatorMruCycleNext<cr>', { silent = true })
