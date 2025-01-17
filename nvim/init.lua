@@ -156,3 +156,4 @@ require('lazy').setup({
 require('lsp_config')
 require('language_servers')
 require('cmp_setup')
+require('autocmds')
