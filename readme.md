@@ -1,7 +1,7 @@
 # Dotfiles and personal config
-What a mess
+A lot of legacy
 
-## Setup unix
+## Setup if unix
 Symlink everything to ~/ or ~/.config/  
 
 ```bash
@@ -11,6 +11,9 @@ ln -s $(pwd)/program/.example_dotfile ~/.config/program/.example_dotfile
 
 Global git config:  
 `git config --global core.excludesfile '~/dotfiles/git/.gitignore'`
+
+## nvim plugin dependencies
+...
 
 ## Some commands on linux
 Soft symlink linux:   
