@@ -47,7 +47,6 @@ require('lazy').setup({
   { 'jceb/vim-orgmode', event = 'VeryLazy' },
   { 'junegunn/fzf', dir = '~/.fzf', build = './install --all', event = 'VeryLazy' },
   { 'junegunn/fzf.vim', event = 'VeryLazy' },
-  { 'ludovicchabant/vim-gutentags', event = 'VeryLazy' },
   { 'mustache/vim-mustache-handlebars', event = 'VeryLazy' },
   { 'NLKNguyen/papercolor-theme', lazy = false, priority = 1000 },
   { 'posva/vim-vue', event = 'VeryLazy' },
