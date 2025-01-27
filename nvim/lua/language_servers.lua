@@ -24,3 +24,4 @@ require('lspconfig').ts_ls.setup({
     'vue',
   },
 })
+require('lspconfig').csharp_ls.setup({})
