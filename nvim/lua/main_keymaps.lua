@@ -13,6 +13,7 @@ vim.keymap.set('n', '<leader>q', ':q<cr>', { noremap = true })
 vim.keymap.set('n', '<leader>w', ':w<cr>', { noremap = true })
 vim.keymap.set('n', '<leader>w', ':w<cr>')
 vim.keymap.set('n', '<leader>so', ':so ~/dotfiles/nvim/init.lua<cr>')
+vim.keymap.set('n', '<leader>yf', ':let @+=@%<cr>')
 
 vim.keymap.set('n', '<leader>l', ':vertical resize +10<cr>', { silent = true })
 vim.keymap.set('n', '<leader>h', ':vertical resize -10<cr>', { silent = true })
