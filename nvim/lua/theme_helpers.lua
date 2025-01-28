@@ -3,11 +3,37 @@ local theme_helpers = {}
 ThemeHelpersColorSchemeIndex = 1
 
 local function print_theme_collection_legend()
-  vim.api.nvim_echo({
-    {
-      '1 Gruvbox\n2 Papercolor\n3 Tokyonight\n4 Tokyonight-day\n5 Kanagawa\n6 Kanagawa lotus\n7 Kanagawa dragon\n8 Catppuccin\n9 Catppuccin mocha',
-    },
-  }, false, {})
+  vim.api.nvim_set_hl(0, 'ThemeSelected', { fg = 'red', bg = 'NONE', bold = true })
+  local marker = '* '
+
+  local theme_names_in_order = {
+    'Gruvbox',
+    'Papercolor',
+    'Tokyonight',
+    'Tokyonight-day',
+    'Kanagawa',
+    'Kanagawa lotus',
+    'Kanagawa dragon',
+    'Catppuccin',
+    'Catppuccin mocha',
+  }
+
+  local chunks = {}
+
+  for index, name in ipairs(theme_names_in_order) do
+    local index_part = string.format('%d ', index)
+    table.insert(chunks, { index_part, 'Normal' })
+
+    if ThemeHelpersColorSchemeIndex == index then
+      table.insert(chunks, { marker .. name, 'ThemeSelected' })
+    else
+      table.insert(chunks, { name, 'Normal' })
+    end
+
+    table.insert(chunks, { '\n', 'Normal' })
+  end
+
+  vim.api.nvim_echo(chunks, false, {})
 end
 
 local function set_gruvbox_theme()
