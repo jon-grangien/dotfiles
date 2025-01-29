@@ -1,5 +1,3 @@
 #### Personal vim (neovim) config
-
-init.vim acts as .vimrc  
-Run vim-plug's :PlugInstall 
+`init.lua` has the plugins and imports config sections from `lua`
 
