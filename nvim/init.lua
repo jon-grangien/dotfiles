@@ -186,20 +186,62 @@ require('lazy').setup({
     },
   },
   {
-    'yetone/avante.nvim',
-    event = 'VeryLazy',
-    lazy = false,
-    version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
+    'olimorris/codecompanion.nvim',
+    config = true,
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-treesitter/nvim-treesitter',
+    },
     opts = {
-      provider = 'openai',
-      openai = {
-        endpoint = 'https://api.openai.com/v1',
-        model = 'gpt-4o', -- your desired model (or use gpt-4o, etc.)
-        timeout = 30000, -- timeout in milliseconds
-        temperature = 0, -- adjust if needed
-        max_tokens = 4096,
+      strategies = {
+        chat = {
+          adapter = 'openai',
+          keymaps = {
+            send = {
+              modes = { n = '<C-s>', i = '<C-s>' },
+            },
+            close = {
+              modes = { n = '<C-c>', i = '<C-c>' },
+            },
+          },
+          slash_commands = {
+            ['file'] = {
+              callback = 'strategies.chat.slash_commands.file',
+              description = 'Select a file',
+              opts = {
+                provider = 'snacks',
+                contains_code = true,
+              },
+            },
+          },
+        },
+        adapters = {
+          openai = function()
+            return require('codecompanion.adapters').extend('openai', {
+              env = {
+                api_key = "cmd:grep 'OPENAI_API_KEY' ~/.api_keys | cut -d '=' -f2",
+              },
+              schema = {
+                model = {
+                  default = 'gpt-4o',
+                },
+              },
+            })
+          end,
+        },
+        opts = {
+          send_code = false,
+        },
       },
     },
+  },
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
+    ---@module 'render-markdown'
+    ---@type render.md.UserConfig
+    opts = {},
+    ft = { 'markdown', 'codecompanion' },
   },
   {
     'rebelot/kanagawa.nvim',
@@ -303,10 +345,6 @@ require('lazy').setup({
     },
   },
 })
-
---require('lualine').setup({
---  options = {},
---})
 
 require('lsp_config')
 require('language_servers')
