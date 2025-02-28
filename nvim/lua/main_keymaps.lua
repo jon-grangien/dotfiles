@@ -4,10 +4,9 @@ vim.keymap.set('n', ',', ':')
 vim.keymap.set('n', 'j', 'gj')
 vim.keymap.set('n', 'k', 'gk')
 vim.keymap.set('n', '<esc>', ':noh<cr><esc>', { silent = true, noremap = true })
--- MapToggle <F1> wrap
--- MapToggle <F2> relativenumber
--- nmap <F9> :call ToggleLightDark()<CR>
+
 vim.keymap.set('n', '<F1>', ':set wrap!<cr>', { noremap = true })
+vim.keymap.set('n', '<F2>', ':set relativenumber!<cr>', { noremap = true })
 vim.keymap.set('n', '<F9>', theme_helpers.flip_to_next_colorscheme, { noremap = true })
 vim.keymap.set('n', '<leader>q', ':q<cr>', { noremap = true })
 vim.keymap.set('n', '<leader>w', ':w<cr>', { noremap = true })

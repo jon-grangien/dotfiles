@@ -4,7 +4,5 @@ vim.g['NERDTreeWinPos'] = 'right'
 vim.g['NERDSpaceDelims'] = 1
 vim.g['NERDTreeMinimalUI'] = 1
 vim.g['NERDTreeDirArrows'] = 1
-vim.g['airline_powerline_fonts'] = 1
-vim.g['airline#extensions#tabline#enabled'] = 1
 vim.g['EasyMotion-smartcase'] = 1
 vim.g['EasyMotion_startofline'] = 0

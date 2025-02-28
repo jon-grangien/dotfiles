@@ -13,6 +13,8 @@ require('plugin_variables')
 require('main_keymaps')
 require('plugin_keymaps')
 
+local theme_helpers = require('theme_helpers')
+
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 
 -- Auto-install lazy.nvim if not present
@@ -37,8 +39,6 @@ require('lazy').setup({
   'hrsh7th/nvim-cmp',
   'jeetsukumaran/vim-buffergator',
   'neovim/nvim-lspconfig',
-  'vim-airline/vim-airline',
-  'vim-airline/vim-airline-themes',
   { 'airblade/vim-gitgutter', event = 'VeryLazy' },
   { 'ap/vim-css-color', event = 'VeryLazy' },
   { 'easymotion/vim-easymotion', event = 'VeryLazy' },
@@ -60,15 +60,146 @@ require('lazy').setup({
   { 'vim-scripts/utl.vim', event = 'VeryLazy' },
   { 'Xuyuanp/nerdtree-git-plugin', event = 'VeryLazy' },
   {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    opts = {
+      sections = {
+        lualine_a = { 'mode' },
+        lualine_b = { 'filename' },
+        lualine_c = { 'diff', 'diagnostics', 'branch' },
+        lualine_x = { 'encoding', 'fileformat', 'filetype' },
+        lualine_y = { 'progress' },
+        lualine_z = { 'location' },
+      },
+      inactive_sections = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = { 'filename' },
+        lualine_x = { 'diff' },
+        lualine_y = {},
+        lualine_z = {},
+      },
+    },
+  },
+  {
     'gruvbox-community/gruvbox',
     lazy = false,
     priority = 1001,
     config = function()
-      vim.o.background = 'dark'
-      vim.g['gruvbox_italic'] = 1
-      vim.g['airline_theme='] = 'gruvbox'
-      vim.cmd('colorscheme gruvbox')
+      theme_helpers.set_default_colorscheme()
     end,
+  },
+  {
+    'folke/snacks.nvim',
+    priority = 1000,
+    lazy = false,
+    ---@type snacks.Config
+    opts = {
+      explorer = { enabled = true },
+      picker = {
+        enabled = true,
+        win = {
+          input = {
+            keys = {
+              ['<CR>'] = { 'confirm', mode = { 'n', 'i' } },
+              ['<c-l>'] = { 'confirm', mode = { 'n', 'i' } },
+              ['<c-e>'] = { 'close', mode = { 'n', 'i' } },
+            },
+          },
+        },
+      },
+      dashboard = { enabled = true, example = 'compact_files' },
+      quickfile = { enabled = true },
+      zen = { enabled = true },
+    },
+    keys = {
+      {
+        '<c-p>',
+        function()
+          Snacks.picker.smart()
+        end,
+        desc = 'Smart Find Files',
+      },
+      {
+        '<leader>p',
+        function()
+          Snacks.picker.buffers()
+        end,
+        desc = 'Buffers',
+      },
+      {
+        '<c-s>',
+        function()
+          Snacks.picker.grep()
+        end,
+        desc = 'Grep',
+      },
+      {
+        '<leader>f',
+        function()
+          Snacks.picker.grep({ live = false, need_search = false })
+        end,
+        desc = 'Grep',
+      },
+      {
+        '<F4>',
+        function()
+          Snacks.picker.explorer({ layout = { preset = 'sidebar', layout = { position = 'right' } } })
+        end,
+        desc = 'Explorer',
+      },
+      {
+        '<F3>',
+        function()
+          Snacks.picker.explorer()
+        end,
+        desc = 'Explorer',
+      },
+      {
+        '<leader>ff',
+        function()
+          Snacks.picker.git_files()
+        end,
+        desc = 'Find git files',
+      },
+      {
+        '<leader>fm',
+        function()
+          Snacks.picker.marks()
+        end,
+        desc = 'Marks',
+      },
+      {
+        '<c-f>',
+        function()
+          Snacks.picker.lines()
+        end,
+        desc = 'Buffer lines',
+      },
+      {
+        '<leader>z',
+        function()
+          Snacks.zen()
+        end,
+        desc = 'Toggle zen mode',
+      },
+    },
+  },
+  {
+    'yetone/avante.nvim',
+    event = 'VeryLazy',
+    lazy = false,
+    version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
+    opts = {
+      provider = 'openai',
+      openai = {
+        endpoint = 'https://api.openai.com/v1',
+        model = 'gpt-4o', -- your desired model (or use gpt-4o, etc.)
+        timeout = 30000, -- timeout in milliseconds
+        temperature = 0, -- adjust if needed
+        max_tokens = 4096,
+      },
+    },
   },
   {
     'rebelot/kanagawa.nvim',
@@ -76,6 +207,7 @@ require('lazy').setup({
     priority = 1000,
   },
   { 'catppuccin/nvim', name = 'catppuccin', priority = 1000 },
+  { 'nyoom-engineering/oxocarbon.nvim', name = 'oxocarbon', priority = 1000 },
   {
     'stevearc/conform.nvim',
     opts = {
@@ -171,6 +303,10 @@ require('lazy').setup({
     },
   },
 })
+
+--require('lualine').setup({
+--  options = {},
+--})
 
 require('lsp_config')
 require('language_servers')
