@@ -223,7 +223,7 @@ require('lazy').setup({
               },
               schema = {
                 model = {
-                  default = 'gpt-4o',
+                  default = 'o3-mini',
                 },
               },
             })
