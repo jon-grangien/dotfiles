@@ -35,10 +35,24 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
   'airblade/vim-rooter',
-  'hrsh7th/cmp-nvim-lsp',
-  'hrsh7th/nvim-cmp',
   'jeetsukumaran/vim-buffergator',
-  'neovim/nvim-lspconfig',
+  {
+    'saghen/blink.cmp',
+    dependencies = { 'rafamadriz/friendly-snippets' },
+    version = '1.*',
+    opts = {
+      completion = { documentation = { auto_show = true } },
+      keymap = {
+        preset = 'default',
+        ['<C-k>'] = {},
+        ['<C-space>'] = {},
+        ['<C-i>'] = { 'show', 'show_documentation', 'hide_documentation' },
+        ['<C-s>'] = { 'show_signature', 'hide_signature', 'fallback' },
+      },
+    },
+    opts_extend = { 'sources.default' },
+  },
+  { 'neovim/nvim-lspconfig', dependencies = { 'saghen/blink.cmp' } },
   { 'airblade/vim-gitgutter', event = 'VeryLazy' },
   { 'ap/vim-css-color', event = 'VeryLazy' },
   { 'easymotion/vim-easymotion', event = 'VeryLazy' },
@@ -110,6 +124,15 @@ require('lazy').setup({
       },
       dashboard = { enabled = true, example = 'compact_files' },
       quickfile = { enabled = true },
+      animate = { enabled = true },
+      input = { enabled = true },
+      scroll = {
+        enabled = true,
+        animate = {
+          duration = { step = 10, total = 80 },
+          easing = 'linear',
+        },
+      },
       zen = { enabled = true },
     },
     keys = {
@@ -347,6 +370,4 @@ require('lazy').setup({
 })
 
 require('lsp_config')
-require('language_servers')
-require('cmp_setup')
 require('autocmds')
