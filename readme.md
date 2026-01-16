@@ -14,14 +14,15 @@ Global git config:
 
 ## nvim dependencies
 - Patched nerd font set in terminal https://www.nerdfonts.com
-- `npm install -g vim-language-server`
-- `npm install -g @tailwindcss/language-server`
-- `brew install lua-language-server`
+- `npm i -g vim-language-server`
+- `npm i -g @tailwindcss/language-server`
+- `npm i -g tree-sitter-cli`
 - `npm i -g vscode-langservers-extracted`
 - `npm i -g @vue/typescript-plugin`
 - `npm i -g volar`
-- `npm install -g typescript typescript-language-server`
-- `npm install -g tree-sitter-cli`
+- `npm i -g @volar/vue-language-server`
+- `npm i -g typescript typescript-language-server`
+- `brew install lua-language-server`
 - `brew install stylua`
 
 ## Some commands on linux

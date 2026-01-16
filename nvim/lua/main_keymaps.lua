@@ -14,10 +14,22 @@ vim.keymap.set('n', '<leader>w', ':w<cr>')
 vim.keymap.set('n', '<leader>so', ':so ~/dotfiles/nvim/init.lua<cr>')
 vim.keymap.set('n', '<leader>yf', ':let @+=@%<cr>')
 
-vim.keymap.set('n', '<leader>l', ':vertical resize +10<cr>', { silent = true })
-vim.keymap.set('n', '<leader>h', ':vertical resize -10<cr>', { silent = true })
-vim.keymap.set('n', '<leader>j', ':resize +5<cr>', { silent = true })
-vim.keymap.set('n', '<leader>k', ':resize -5<cr>', { silent = true })
+vim.keymap.set('n', '<leader>l', function()
+  local count = vim.v.count > 0 and vim.v.count or 1
+  vim.cmd('vertical resize +' .. (10 * count))
+end, { silent = true })
+vim.keymap.set('n', '<leader>h', function()
+  local count = vim.v.count > 0 and vim.v.count or 1
+  vim.cmd('vertical resize -' .. (10 * count))
+end, { silent = true })
+vim.keymap.set('n', '<leader>j', function()
+  local count = vim.v.count > 0 and vim.v.count or 1
+  vim.cmd('resize +' .. (5 * count))
+end, { silent = true })
+vim.keymap.set('n', '<leader>k', function()
+  local count = vim.v.count > 0 and vim.v.count or 1
+  vim.cmd('resize -' .. (5 * count))
+end, { silent = true })
 
 vim.keymap.set('n', '<C-k>', ':wincmd k<cr>')
 vim.keymap.set('n', '<C-j>', ':wincmd j<cr>')
